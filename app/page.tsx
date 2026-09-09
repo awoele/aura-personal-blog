@@ -17,6 +17,8 @@ export default function Home() {
   const [menu, setMenu] = useState(false);
   useEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.project-card'));
+    const scenes = Array.from(document.querySelectorAll<HTMLElement>('.reel-panel'));
     let frame = 0, smoothHero = 0, smoothRail = 0, previousTime = 0, currentIndex = -1;
     const update = (now: number) => {
       frame = 0;
@@ -32,6 +34,16 @@ export default function Home() {
       smoothRail += (railTarget - smoothRail) * easing;
       hero.current?.style.setProperty('--scroll', String(smoothHero));
       showcase.current?.style.setProperty('--reel', String(smoothRail));
+      cards.forEach(card => {
+        const top = card.getBoundingClientRect().top;
+        const arrival = active ? Math.max(0, Math.min((innerHeight - top) / (innerHeight * .7), 1)) : 1;
+        card.style.setProperty('--arrival', String(arrival));
+      });
+      scenes.forEach((scene, i) => {
+        const offset = active ? Math.max(-1, Math.min(smoothRail * 2 - i, 1)) : 0;
+        scene.style.setProperty('--scene-focus', String(1 - Math.abs(offset)));
+        scene.style.setProperty('--scene-offset', String(offset));
+      });
       const travel = Math.max((rail.current?.scrollWidth ?? 0) - (rail.current?.clientWidth ?? 0), 0);
       rail.current?.style.setProperty('--rail-x', `${-smoothRail * travel}px`);
       const index = Math.min(2, Math.round(smoothRail * 2));
