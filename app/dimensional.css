@@ -212,7 +212,7 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 *::-webkit-scrollbar { display:none; width:0; height:0; }
 .reading-image-frame { overflow:hidden; border-radius:12px; margin-bottom:26px; }
 .reading-image-frame .reading-cover { display:block; width:100%; margin:0; }
-.reading-image-frame.travel-project { display:flex; align-items:center; justify-content:center; height:clamp(300px,52svh,500px); padding:26px 22px; }
+.reading-image-frame.travel-project { display:flex; align-items:center; justify-content:center; aspect-ratio:16/10; height:auto; background:transparent; padding:12px 20px; }
 .reading-image-frame.travel-project .product-phone-pair { height:100%; gap:9%; }
 .reading-image-frame.travel-project .device-position { height:94%; max-width:40%; }
 .motion-paused .case-glass { transition:none; }
