@@ -42,8 +42,9 @@ export default function Home() {
         const arrival = active ? Math.max(0, Math.min((innerHeight - top) / (innerHeight * .7), 1)) : 1;
         card.style.setProperty('--arrival', String(arrival));
       });
-      scenes.forEach((scene, i) => {
-        const offset = active ? Math.max(-1, Math.min(smoothRail * 2 - i, 1)) : 0;
+        const sceneSteps = Math.max(scenes.length - 1, 1);
+        scenes.forEach((scene, i) => {
+          const offset = active ? Math.max(-1, Math.min(smoothRail * sceneSteps - i, 1)) : 0;
         scene.style.setProperty('--scene-focus', String(1 - Math.abs(offset)));
         scene.style.setProperty('--scene-offset', String(offset));
       });
@@ -52,9 +53,11 @@ export default function Home() {
         const read = active ? Math.max(0, Math.min((innerHeight * 1.03 - top) / (innerHeight * .48), 1)) : 1;
         heading.style.setProperty('--read', String(read));
       });
-      const travel = Math.max((rail.current?.scrollWidth ?? 0) - (rail.current?.clientWidth ?? 0), 0);
+        const firstScene = scenes[0];
+        const lastScene = scenes[scenes.length - 1];
+        const travel = firstScene && lastScene ? Math.max(lastScene.offsetLeft - firstScene.offsetLeft, 0) : 0;
       rail.current?.style.setProperty('--rail-x', `${-smoothRail * travel}px`);
-      const index = Math.min(2, Math.round(smoothRail * 2));
+        const index = Math.min(sceneSteps, Math.round(smoothRail * sceneSteps));
       if (index !== currentIndex) { currentIndex = index; setSceneIndex(index); }
       document.documentElement.style.setProperty('--page-progress', `${y / Math.max(document.documentElement.scrollHeight - innerHeight, 1) * 100}%`);
       if (Math.abs(heroTarget - smoothHero) + Math.abs(railTarget - smoothRail) > .0001) frame = requestAnimationFrame(update);
@@ -74,7 +77,8 @@ export default function Home() {
     if (!showcase.current) return;
     if (paused || matchMedia('(prefers-reduced-motion: reduce)').matches) { showcase.current.querySelectorAll('.reel-panel')[index]?.scrollIntoView({ block: 'center' }); return; }
     const start = showcase.current.getBoundingClientRect().top + window.scrollY - 72;
-    window.scrollTo({ top: start + index / 2 * (showcase.current.offsetHeight - innerHeight + 72), behavior: paused || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    const sceneSteps = Math.max(showcase.current.querySelectorAll('.reel-panel').length - 1, 1);
+    window.scrollTo({ top: start + index / sceneSteps * (showcase.current.offsetHeight - innerHeight + 72), behavior: paused || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
   };
   const tilt = (event: PointerEvent<HTMLButtonElement>) => {
     if (paused || event.pointerType !== 'mouse' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
