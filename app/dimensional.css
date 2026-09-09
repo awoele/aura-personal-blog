@@ -269,11 +269,12 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .motion-paused .work-window,.motion-paused .work-case-fan,.motion-paused .work-case-fan figure { transform:none; }
 .work-screens { position:relative; display:block; height:100%; width:100%; perspective:1400px; }
 .work-screens .work-window { position:absolute; margin:0; transition:transform 1s var(--ease),box-shadow 1s var(--ease); }
-.work-window-main { right:0; top:5%; width:87%; z-index:1; transform:translateY(calc((1 - var(--scene-focus,1)) * -18px)) rotateY(calc(var(--scene-offset,0) * -7deg)); }
-.work-window-detail { left:0; bottom:5%; width:60%; z-index:2; box-shadow:0 18px 45px -15px #000d,0 0 0 1px #ffffff16; transform:translateY(calc((1 - var(--scene-focus,1)) * 30px)) rotate(-3deg); }
-.work-window-detail>img { filter:brightness(.97) saturate(.92); }
-.work-screens:hover .work-window-main { transform:translate(5px,-8px) rotateY(-2deg); }
-.work-screens:hover .work-window-detail { transform:translate(-5px,5px) rotate(-1deg); box-shadow:0 24px 55px -15px #000e,0 0 0 1px #ffffff2b; }
+.work-window-main { left:0; bottom:0; width:64%; z-index:3; box-shadow:0 18px 45px -14px #000c,0 0 0 1px #ffffff14; transform:translateY(calc((1 - var(--scene-focus,1)) * 30px)) rotate(-3deg); }
+.work-window-detail { right:0; top:0; width:80%; z-index:1; box-shadow:0 18px 45px -15px #000d,0 0 0 1px #ffffff16; transform:translateY(calc((1 - var(--scene-focus,1)) * -18px)) rotateY(calc(var(--scene-offset,0) * -7deg)); }
+.work-window-main>img { filter:brightness(.97) saturate(.92); }
+.work-window-detail>img { filter:brightness(.9) saturate(.9); }
+.work-screens:hover .work-window-detail { transform:translate(5px,-8px) rotateY(-2deg); }
+.work-screens:hover .work-window-main { transform:translate(-5px,5px) rotate(-1deg); box-shadow:0 24px 55px -15px #000e,0 0 0 1px #ffffff2b; }
 .motion-paused .work-screens .work-window { transform:none; }
 @media(min-width:701px) and (max-width:1150px) {
   .loopit-work-reel .reel-heading { align-items:flex-start; flex-direction:column; gap:18px; }
@@ -288,9 +289,34 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   .loopit-work-panel .reel-copy h3 { font-size:29px; margin:0 0 15px; }.loopit-work-panel .reel-copy p { display:none; }
   .loopit-work-panel .work-visit { font-size:12px; }.work-visit>span { width:29px; height:29px; }
   .work-window figcaption { font-size:8px; top:calc(100% + 10px); }.work-window figcaption>span { display:none; }
-  .work-window-main { top:3%; width:88%; }.work-window-detail { top:38%; bottom:auto; width:64%; }
+  .work-window-detail { top:3%; width:88%; }.work-window-main { top:38%; bottom:auto; width:64%; }
   .work-case-fan { height:100%; max-width:360px; }.work-case-fan figure { width:35%; }.work-case-fan figure:nth-child(2) { left:32.5%; }
 }
 @media(prefers-reduced-motion:reduce) {
   .loopit-work-reel { height:auto; }.work-window,.work-case-fan,.work-case-fan figure,.work-screens:hover .work-window { transform:none; }
 }
+
+/* A machined rim and a quiet edge reflection keep the captures tactile. */
+.work-screens .work-window {
+  padding:3px;
+  border-radius:14px;
+  background:linear-gradient(145deg,#9da6b2 0%,#3b424d 17%,#171b23 43%,#505965 76%,#929aa5 100%);
+  box-shadow:0 1px 0 #ffffff55 inset,0 -1px 0 #05070bd9 inset,0 0 0 1px #05070bb3,0 8px 16px -9px #000e,0 30px 60px -22px #000c;
+}
+.work-screens .work-window>img { border-radius:11px; }
+.work-screens .work-window::before {
+  content:''; position:absolute; inset:0; padding:1px; border-radius:inherit; pointer-events:none;
+  background:linear-gradient(115deg,#ffffff08 12%,#e9f1ff38 31%,#ffffffdd 43%,#ffffff20 52%,#c7d7ed18 80%);
+  background-size:250% 100%; background-position:100% 0;
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor; mask-composite:exclude;
+  transition:background-position 1.6s var(--ease);
+}
+.work-screens .work-window::after {
+  inset:3px; border-radius:11px;
+  box-shadow:0 0 0 1px #05070b80,0 1px 1px #ffffff38 inset,0 -1px 2px #0005 inset;
+}
+.work-screens:hover .work-window::before,.work-screens:focus-visible .work-window::before { background-position:0 0; }
+.work-screens:hover .work-window-main { box-shadow:0 1px 0 #ffffff70 inset,0 -1px 0 #05070bd9 inset,0 0 0 1px #05070bb3,0 12px 22px -10px #000e,0 38px 70px -24px #000e; }
+.motion-paused .work-window::before { transition:none; }
+@media(prefers-reduced-motion:reduce) { .work-window::before { transition:none!important; } }
