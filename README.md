@@ -48,3 +48,10 @@ npx tsc --noEmit
   - https://awoele.github.io/TrendRadar/content/
   - https://awoele.github.io/loopit-template-showcase/dashboard/index.html
   - https://awoelexuan.com/
+
+## 第四版：简约展示
+
+- 按用户反馈移除首屏作品和 WebGL 悬浮物，改为纯文字封面、逐行入场和滚动淡出。
+- 四个项目使用独立文字栏与完整截图栏，移动端依次排列；标题不再覆盖图像。
+- 统一白、浅灰与石墨色，缩小透视角度、阴影和装饰。经历与交互展廊保留原有内容、入口和暂停动效控制。
+- 保留第三版真实素材和数据口径；旧概念图留存于资源目录，当前页面不使用。
