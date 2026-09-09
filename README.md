@@ -76,3 +76,11 @@ npx tsc --noEmit
   - https://awoele.github.io/TravelFilm/screens/07-city-memories-a.png
   - https://awoele.github.io/TravelFilm/screens/05-photo-viewer.jpg
 - 雪山及湖畔图来源沿用上方 MYSTIC ONE AURA 图集记录；只作为站内图集展示，不声明摄影著作权。
+
+## 第七版：生活影像与项目相册
+
+- 按用户补充明确分区：展廊只展示旅行、生活和光影，不再重复项目介绍；项目照片和产品界面放回项目区。
+- TravelFilm 主卡内部增加四张旅行照片；按最终反馈移除卡片外的额外图集横排，保持主卡片展示简洁。
+- 手机外观参考 iPhone 17 Pro Max 正面，采用橙色／深蓝色细边、78:163.4 机身比例，并按原截图 900:1950 的比例匹配内框。属于 CSS 展示模型，不是官方设备素材。
+- 设备设计参考：https://www.apple.com/iphone-17-pro/ （官方正面图，未嵌入站点）。
+- 新增生活照片来自原 TravelFilm 公开素材 hero-memory/02-profile-sunflowers.jpg、03-landscape-red-cap.jpg、06-standing-sheep.jpg。页面不将影像中人物认定为网站作者。

@@ -168,3 +168,40 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','PingFang S
 @media(prefers-reduced-motion:reduce) {
   .device-frame { animation:none; }.device-position,.game-screen,.landscape-main,.landscape-detail,.landscape-main img { transform:none!important; }
 }
+
+/* iPhone 17 Pro Max inspired front: thin aluminum edge, generous display. */
+.iphone-17-pro-max { container-type:inline-size; aspect-ratio:78 / 163.4; }
+.iphone-17-pro-max .device-frame { --edge:#b7693c; padding:1.25cqw; border-radius:15.6cqw; background:linear-gradient(115deg,#a14b25,#df9a69 18%,#733119 45%,#d58855 78%,#994620); box-shadow:0 0 0 .4px #dc9b7059,0 0 0 1px #17100c inset,6px 20px 30px -14px #0009; }
+.iphone-17-pro-max:nth-child(2) .device-frame { --edge:#48516d; background:linear-gradient(115deg,#292f42,#77819c 18%,#24293a 45%,#666f87 78%,#31384c); }
+.iphone-17-pro-max .device-screen { border:.95cqw solid #070709; border-radius:14.35cqw; }
+.iphone-17-pro-max .device-island { top:2.7%; left:36%; width:28%; height:3.3%; box-shadow:0 0 0 .5px #ffffff07; }
+.iphone-17-pro-max .device-key { background:var(--edge); width:1px; }.iphone-17-pro-max .device-key-left { left:-1px; }.iphone-17-pro-max .device-key-right { right:-1px; }
+.iphone-17-pro-max .device-home { bottom:1.5%; height:1.4px; }
+.product-phone-pair { height:calc(100% - 22px); gap:8%; }
+.product-phone-pair .device-position:first-child { transform:translateY(5px) rotate(-2deg); }.product-phone-pair .device-position:last-child { transform:translateY(-5px) rotate(2deg); }
+.project-card:hover .product-phone-pair .device-position:first-child { transform:translate(-4px,-3px) rotate(-4deg) rotateY(5deg); }.project-card:hover .product-phone-pair .device-position:last-child { transform:translate(4px,-8px) rotate(4deg) rotateY(-5deg); }
+.life-panel { grid-template-columns:.82fr 1.18fr; background:#1e282d; gap:5%; }
+.life-panel .reel-copy p { max-width:270px; color:#a1b0b5; }.life-caption { display:block; font-size:11px; color:#bec9ca; margin-top:36px; }
+.moment-everyday { background:#1e2a28; }.moment-memory { background:#292a23; }
+.life-art { position:relative; height:100%; min-height:0; display:flex; align-items:center; justify-content:center; }
+.life-art figure { margin:0; overflow:hidden; border-radius:14px; box-shadow:0 22px 40px -20px #000a; }
+.life-main { width:91%; height:84%; transform:translateY(calc(var(--scene-offset,0) * -18px)); }
+.life-main img { height:100%; width:100%; object-fit:cover; transform:scale(calc(1.12 - var(--scene-focus,1) * .1)); }
+.life-detail { position:absolute; width:34%; height:42%; bottom:3%; right:-2%; border:4px solid #242e31; transform:translateY(calc(var(--scene-offset,0) * 38px)) rotate(4deg); }.life-detail img { height:100%; width:100%; object-fit:cover; }
+.moment-everyday .life-main,.moment-memory .life-main { width:67%; height:95%; margin-right:20%; }.moment-everyday .life-main img { object-position:50% 44%; }.moment-memory .life-main img { object-position:50% 60%; }
+.moment-memory .life-detail { height:64%; width:39%; }.moment-horizon .life-main { height:78%; }
+.motion-paused .life-main,.motion-paused .life-detail,.motion-paused .life-main img { transform:none; }
+@media(max-width:700px) { .life-panel { grid-template-columns:1fr; gap:20px; }.life-caption { display:none; }.life-main { height:92%; }.moment-everyday .life-main,.moment-memory .life-main { width:55%; }.life-detail { right:2%; }.moment-memory .life-detail { width:31%; } }
+@media(prefers-reduced-motion:reduce) { .life-main,.life-detail,.life-main img { transform:none; } }
+/* The 78:163.4 enclosure and 3.08% total edge match 900:1950 screenshots. */
+.iphone-17-pro-max .device-screen { border-width:1.83cqw; }
+.iphone-17-pro-max .device-screen img { object-fit:cover; object-position:center; }
+.iphone-17-pro-max .device-island { top:3.1%; height:3.1%; }
+.project-memory-band { width:100%; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; perspective:900px; }
+.project-memory-band>div { aspect-ratio:4/5; overflow:hidden; border-radius:12px; transform:translateY(calc((1 - var(--arrival)) * 24px)); box-shadow:0 7px 16px #0002; }
+.project-memory-band>div:nth-child(even) { transform:translateY(calc((1 - var(--arrival)) * 44px)); }
+.project-memory-band img { display:block; width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
+.project-card:hover .project-memory-band img { transform:scale(1.055); }
+.motion-paused .project-memory-band>div { transform:none; }
+@media(max-width:700px) { .project-memory-band { gap:7px; }.project-memory-band>div { border-radius:8px; } }
+@media(prefers-reduced-motion:reduce) { .project-memory-band>div,.project-memory-band img { transform:none!important; transition:none; } }
