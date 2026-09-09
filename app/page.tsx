@@ -120,7 +120,6 @@ export default function Home() {
             <div className="post-topline"><span>{post.category}</span><ArrowUpRight size={21}/></div>
             <div className="project-card-title"><span className="project-name">{post.title}</span><h3>{post.headline}</h3></div>
             <div className="project-art">{index === 0 ? <div className="product-phone-pair"><DeviceFrame src="/images/tf-rolls.webp" alt="TravelFilm 旅行胶卷界面"/><DeviceFrame src="/images/tf-detail.webp" alt="TravelFilm 行程详情界面"/></div> : <div className="browser-preview"><div className="screen-surface"><img className="project-cover" src={post.image} alt={post.alt} loading="lazy" decoding="async" width="1400" height="875"/></div></div>}</div>
-            {index===0 && <div className="project-memory-band"><div><img src="/images/moment-grassland.webp" alt="草原旅行照片" loading="lazy"/></div><div><img src="/images/travel.webp" alt="旅途中拿起相机的片刻" loading="lazy"/></div><div><img src="/images/moment-sunflowers.webp" alt="花田中的旅行照片" loading="lazy"/></div><div><img src="/images/moment-sheep.webp" alt="羊群旁的旅行照片" loading="lazy"/></div></div>}
             <div className="post-foot"><span>查看项目故事</span><span className="plus-circle"><Plus size={19}/></span></div>
           </button>
           <div className="project-result"><strong>{post.metric}</strong><span>{post.metricLabel}</span></div><p className="result-context">{post.secondary}</p>
