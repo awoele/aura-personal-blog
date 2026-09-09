@@ -31,3 +31,20 @@ npx tsc --noEmit
 ## 数据口径
 
 保留样本量、统计周期与角色边界。IELTS 的 83.3% 为双轮核心问题识别一致率；TravelFilm 的 75.0% 为单人回测候选行程采纳率；摄影网站指标为首个完整统计月；Loopit 的 9.85 pp 为分组观察差异。
+
+## 第三版：真实产品画面与实时 3D
+
+- 首屏：Three.js 实时渲染金属结体、立体屏幕、镜面环境与视角变化；鼠标视差、滚动展开。离开视口暂停渲染，支持减少动效、手动暂停与无 WebGL 静态回退。
+- 展示：原生纵向滚动驱动横向三幕产品展廊；暂停／减少动态时变为纵向静态内容。
+- 配图：TravelFilm 使用官网发布的三张 App 界面；Loopit 使用案例页的三张实际封面；TrendRadar、模板看板和摄影网站使用本次采集的线上页面截图。
+- IELTS 在线入口需要访问口令，本版采用项目内保存的 2026-08-03 阅读训练界面截图，alt 文本标注为历史界面。未绕过登录。
+- 实际素材来源：
+  - https://awoele.github.io/TravelFilm/screens/01-footprints-overview.jpg
+  - https://awoele.github.io/TravelFilm/screens/03-rolls.jpg
+  - https://awoele.github.io/TravelFilm/screens/04-roll-detail.jpg
+  - https://awoele.github.io/yxy-loopit-cases/covers/loopit-template-case.png
+  - https://awoele.github.io/yxy-loopit-cases/covers/katseye-free-normal.png
+  - https://awoele.github.io/yxy-loopit-cases/covers/loopit-case-04-live-v3.png
+  - https://awoele.github.io/TrendRadar/content/
+  - https://awoele.github.io/loopit-template-showcase/dashboard/index.html
+  - https://awoelexuan.com/

@@ -4,7 +4,7 @@ export const projects = [
   {
     category: '照片整理 · 独立开发', date: '2026.06 — 2026.08', title: 'TravelFilm',
     headline: '把旅行，\n重新整理成故事。', subtitle: '从分散的照片，到可回顾的旅行胶卷。',
-    image: '/images/mountains.webp', alt: '摄影网站中的雪山与湖面影像', style: 'travel-project',
+    image: '/images/tf-footprints.webp', alt: 'TravelFilm 足迹真实界面', style: 'travel-project',
     metric: '2,000', metricLabel: '张照片单人回测', secondary: '9 / 12 段候选行程直接采纳',
     url: 'https://awoele.github.io/TravelFilm/', tech: 'React Native · Expo · TypeScript · SQLite',
     role: '产品设计与独立开发',
@@ -17,7 +17,7 @@ export const projects = [
   {
     category: '摄影网站 · 独立运营', date: '2026.03 — 2026.08', title: 'MYSTIC ONE AURA',
     headline: '让每一帧，\n都被好好看见。', subtitle: '为持续发布与沉浸浏览，设计同一个空间。',
-    image: '/images/lakeside.webp', alt: '摄影网站中的湖畔木船影像', style: 'photo-project',
+    image: '/images/photo-interface.webp', alt: 'MYSTIC ONE AURA 摄影网站真实布局', style: 'photo-project',
     metric: '549', metricLabel: '幅作品 · 首个完整统计月', secondary: '186 UV · 1,172 次作品详情打开',
     url: 'https://awoelexuan.com/', tech: 'Next.js · TypeScript · Tailwind CSS · Google Cloud Storage · Vercel',
     role: '产品设计与独立运营',
@@ -30,7 +30,7 @@ export const projects = [
   {
     category: 'AI 学习 Agent · 独立开发', date: '2026.04 — 2026.07', title: 'IELTS Workbench',
     headline: '把学习，\n变成清晰的下一步。', subtitle: '计划、训练、复盘，连接为一条学习路径。',
-    image: '/images/ielts.webp', alt: '蓝色桌面上的笔记本与银色钢笔，项目概念图', style: 'ielts-project',
+    image: '/images/ielts-interface.webp', alt: 'IELTS Workbench 阅读训练历史界面', style: 'ielts-project',
     metric: '83.3%', metricLabel: '核心问题识别一致率', secondary: '24 份写作／口语样本 · 双轮评估',
     url: 'https://ielts.awoelexuan.com/', tech: 'React · TypeScript · Cloudflare Workers · D1 · Gemini API',
     role: 'AI 产品设计与独立开发',
@@ -43,7 +43,7 @@ export const projects = [
   {
     category: '内容雷达 · 开源二次开发', date: '2026.05 — 2026.06', title: 'TrendRadar',
     headline: '从信息噪声里，\n找到值得追踪的信号。', subtitle: '聚焦 Vibe Coding 的采集、打标与筛选工作流。',
-    image: '/images/radar.webp', alt: '银色与蓝色光纤汇聚成流，内容雷达概念图', style: 'radar-project',
+    image: '/images/radar-interface.webp', alt: 'TrendRadar 热点内容看板线上截图', style: 'radar-project',
     metric: '90 → 20', metricLabel: '分钟／每 100 条内容的人工筛选', secondary: '连续 14 天 · 去重后沉淀 699 条内容',
     url: 'https://awoele.github.io/TrendRadar/content/', tech: 'Python · PowerShell · TikHub API · AI Agent · GitHub Pages',
     role: '产品重构与开源二次开发',
