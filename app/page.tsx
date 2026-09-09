@@ -4,6 +4,7 @@ import { ArrowUpRight, ArrowRight, ArrowDown, Plus, X, Pause, Play } from 'lucid
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog';
 
 import { projects as posts, experience } from './content';
+import HeroScene from './hero-scene';
 import ProjectReel from './project-reel';
 
 export default function Home() {
@@ -21,7 +22,7 @@ export default function Home() {
       frame = 0;
       const y = window.scrollY;
       const active = !media.matches && !paused;
-      const heroRange = Math.max((hero.current?.offsetHeight ?? innerHeight) * .8, 1);
+      const heroRange = Math.max((hero.current?.offsetHeight ?? innerHeight) - innerHeight, 1);
       const heroTarget = active ? Math.max(0, Math.min(y / heroRange, 1)) : 0;
       const rect = showcase.current?.getBoundingClientRect();
       const railTarget = active && rect ? Math.max(0, Math.min((72 - rect.top) / Math.max(rect.height - innerHeight + 72, 1), 1)) : 0;
@@ -60,8 +61,8 @@ export default function Home() {
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
-    event.currentTarget.style.setProperty('--rx', `${-y * 5}deg`);
-    event.currentTarget.style.setProperty('--ry', `${x * 5}deg`);
+    event.currentTarget.style.setProperty('--rx', `${-y * 14}deg`);
+    event.currentTarget.style.setProperty('--ry', `${x * 14}deg`);
     event.currentTarget.style.setProperty('--mx', `${(x + .5) * 100}%`);
     event.currentTarget.style.setProperty('--my', `${(y + .5) * 100}%`);
   };
@@ -78,21 +79,25 @@ export default function Home() {
     <main>
       <section ref={hero} className="hero dimensional-hero" aria-labelledby="hero-title"><div className="hero-stage">
         <div className="hero-ambient" aria-hidden="true"/>
-        <div className="hero-copy"><div className="eyebrow hero-eyebrow">杨玄一 · AI 产品经理 / 独立创造者</div><h1 id="hero-title"><span>让想法，</span><span>成为产品。</span></h1><p>探索 AI，也关心每一个真实的使用体验。</p><a className="hero-link" href="#journal">探索作品 <ArrowRight size={18}/></a></div>
+        <div className="hero-copy"><div className="eyebrow hero-eyebrow"><span/> YANG XUANYI · AI PRODUCT</div><h1 id="hero-title">让想法，成为产品。</h1><p>我是杨玄一。探索 AI 应用、Agent 工作流与有温度的数字体验。</p><a className="hero-link" href="#journal">探索我的作品 <ArrowUpRight size={18}/></a></div>
+        <HeroScene paused={paused}/>
         <div className="hero-bottom"><span>AI 产品 · 设计 · 独立开发</span><a href="#journal" className="scroll-cue">SCROLL TO DISCOVER <ArrowDown size={14}/></a><button className="motion-control" onClick={() => setPaused(!paused)} aria-label={paused ? '播放动效' : '暂停动效'} aria-pressed={paused}>{paused ? <Play size={14}/> : <Pause size={14}/>}</button></div>
       </div></section>
       <section id="journal" className="journal section-wrap">
-        <div className="section-heading" data-reveal><div><div className="eyebrow">SELECTED WORK</div><h2>精选作品。</h2></div><p>产品设计、独立开发与持续运营。</p></div>
+        <div className="section-heading" data-reveal><div><div className="eyebrow">SELECTED WORK / 2026</div><h2>从真实问题出发。<br/><span>让创造，有迹可循。</span></h2></div><p>产品设计、独立开发与持续运营。<br/>四个项目，四种探索。</p></div>
         <div className="post-grid project-grid">{posts.map((post, index) => <article className="post-shell" key={post.title} data-reveal style={{ transitionDelay: `${index % 2 * 90}ms` }}>
-          <div className="project-info"><span className="project-category">{post.category}</span><h3>{post.title}</h3><p className="project-intro">{post.subtitle}</p><div className="project-result"><strong>{post.metric}</strong><span>{post.metricLabel}</span></div><p className="result-context">{post.secondary}</p><div className="project-actions"><button onClick={() => setSelected(index)}>项目故事 <Plus size={16}/></button><a href={post.url} target="_blank" rel="noreferrer">访问作品 <ArrowUpRight size={16}/></a></div><span className="project-date">{post.date}</span></div>
           <button className={`post-card project-card ${post.style}`} onPointerMove={tilt} onPointerLeave={event => { event.currentTarget.style.setProperty('--rx', '0deg'); event.currentTarget.style.setProperty('--ry', '0deg'); }} onClick={() => setSelected(index)} aria-label={`阅读项目：${post.title}`}>
-            {index === 0 ? <div className="product-phone-pair"><img src="/images/tf-rolls.webp" alt="TravelFilm 旅行胶卷界面" loading="lazy"/><img src="/images/tf-detail.webp" alt="TravelFilm 行程详情界面" loading="lazy"/></div> : <div className="browser-preview"><div className="browser-preview-bar"><i/><i/><i/><span>{post.title}</span></div><img className="project-cover" src={post.image} alt={post.alt} loading="lazy" decoding="async" width="1400" height="875"/></div>}
-            <span className="image-open" aria-hidden="true"><ArrowUpRight size={19}/></span>
+            <div className="post-topline"><span>{post.category}</span><ArrowUpRight size={21}/></div>
+            <div className="project-card-title"><span className="project-name">{post.title}</span><h3>{post.headline}</h3></div>
+            <div className="project-art">{index === 0 ? <div className="product-phone-pair"><img src="/images/tf-rolls.webp" alt="TravelFilm 旅行胶卷界面" loading="lazy"/><img src="/images/tf-detail.webp" alt="TravelFilm 行程详情界面" loading="lazy"/></div> : <div className="browser-preview"><div className="screen-surface"><img className="project-cover" src={post.image} alt={post.alt} loading="lazy" decoding="async" width="1400" height="875"/></div></div>}</div>
+            <div className="post-foot"><span>查看项目故事</span><span className="plus-circle"><Plus size={19}/></span></div>
           </button>
+          <div className="project-result"><strong>{post.metric}</strong><span>{post.metricLabel}</span></div><p className="result-context">{post.secondary}</p>
+          <div className="post-meta"><span>{post.date}</span><a href={post.url} target="_blank" rel="noreferrer">访问作品 ↗</a></div>
         </article>)}</div>
       </section>
       <section id="experience" className="experience-section">
-        <div className="section-wrap experience-wrap"><div className="section-heading" data-reveal><div><div className="eyebrow">EXPERIENCE</div><h2>实践与经历。</h2></div><p>从需求定义，到产品交付。</p></div>
+        <div className="section-wrap experience-wrap"><div className="section-heading" data-reveal><div><div className="eyebrow">EXPERIENCE</div><h2>走进真实业务。<br/><span>把每一步，落到实处。</span></h2></div><p>需求、生产、评测、迭代、发布。<br/>关注完整的产品交付过程。</p></div>
         {experience.map((item,index) => <article key={item.company} className={`experience-item experience-${index}`} data-reveal>
           <div className="experience-banner">{index===0 && <div className="loopit-real-covers"><img src="/images/loopit-template.webp" alt="Loopit 模板入口" loading="lazy"/><img src="/images/loopit-katseye.webp" alt="KATSEYE 人物卡牌" loading="lazy"/><img src="/images/loopit-emergency.webp" alt="Emergency Draft 英雄预算选择" loading="lazy"/></div>}<div className="experience-banner-shade"/><div className="company-heading"><div className="eyebrow">{item.date}</div><h3>{item.company}<span>{item.role}</span></h3><p>{item.headline}</p><span className="company-fullname">{item.fullName}</span></div>{index===1&&<div className="baidu-type" aria-hidden="true">AI<br/><span>CONTENT.</span></div>}</div>
           <div className="experience-content"><p className="experience-summary">{item.summary}</p><div className="experience-metrics">{item.metrics.map(([number,label])=><div key={label}><strong>{number}</strong><span>{label}</span></div>)}</div><div className="experience-points">{item.points.map((point,i)=><p key={point}><span>0{i+1}</span>{point}</p>)}</div>{item.links.length>0 && <div className="work-links">{item.links.map(([label,url])=><a key={label} href={url} target="_blank" rel="noreferrer">{label}<ArrowUpRight size={14}/></a>)}</div>}</div>
