@@ -6,6 +6,7 @@ import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose } fr
 import { projects as posts, experience } from './content';
 import HeroScene from './hero-scene';
 import ProjectReel from './project-reel';
+import DeviceFrame from './device-frame';
 
 export default function Home() {
   const hero = useRef<HTMLElement>(null);
@@ -19,6 +20,8 @@ export default function Home() {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const cards = Array.from(document.querySelectorAll<HTMLElement>('.project-card'));
     const scenes = Array.from(document.querySelectorAll<HTMLElement>('.reel-panel'));
+    const headings = Array.from(document.querySelectorAll<HTMLElement>('.section-heading h2, .reel-heading h2, .about-grid h2'));
+    headings.forEach(heading => heading.classList.add('motion-text'));
     let frame = 0, smoothHero = 0, smoothRail = 0, previousTime = 0, currentIndex = -1;
     const update = (now: number) => {
       frame = 0;
@@ -43,6 +46,11 @@ export default function Home() {
         const offset = active ? Math.max(-1, Math.min(smoothRail * 2 - i, 1)) : 0;
         scene.style.setProperty('--scene-focus', String(1 - Math.abs(offset)));
         scene.style.setProperty('--scene-offset', String(offset));
+      });
+      headings.forEach(heading => {
+        const top = heading.getBoundingClientRect().top;
+        const read = active ? Math.max(0, Math.min((innerHeight * 1.03 - top) / (innerHeight * .48), 1)) : 1;
+        heading.style.setProperty('--read', String(read));
       });
       const travel = Math.max((rail.current?.scrollWidth ?? 0) - (rail.current?.clientWidth ?? 0), 0);
       rail.current?.style.setProperty('--rail-x', `${-smoothRail * travel}px`);
@@ -78,6 +86,16 @@ export default function Home() {
     event.currentTarget.style.setProperty('--mx', `${(x + .5) * 100}%`);
     event.currentTarget.style.setProperty('--my', `${(y + .5) * 100}%`);
   };
+  const magnet = (event: PointerEvent<HTMLElement>) => {
+    if (paused || event.pointerType !== 'mouse' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = event.currentTarget.getBoundingClientRect();
+    event.currentTarget.style.setProperty('--magnet-x', `${((event.clientX - rect.left) / rect.width - .5) * 14}px`);
+    event.currentTarget.style.setProperty('--magnet-y', `${((event.clientY - rect.top) / rect.height - .5) * 10}px`);
+  };
+  const releaseMagnet = (event: PointerEvent<HTMLElement>) => {
+    event.currentTarget.style.setProperty('--magnet-x', '0px');
+    event.currentTarget.style.setProperty('--magnet-y', '0px');
+  };
   return <div className={paused ? 'site motion-paused' : 'site'}>
     <a className="skip-link" href="#journal">跳至作品</a>
     <header className="navigation">
@@ -85,13 +103,13 @@ export default function Home() {
       <nav aria-label="主导航" className={menu ? 'nav-links open' : 'nav-links'}>
         <a href="#journal" onClick={() => setMenu(false)}>作品</a><a href="#experience" onClick={() => setMenu(false)}>经历</a><a href="#moments" onClick={() => setMenu(false)}>交互</a><a href="#about" onClick={() => setMenu(false)}>关于</a>
       </nav>
-      <a href="mailto:awoelexuan@gmail.com" className="nav-cta">联系我 <ArrowUpRight size={14}/></a>
+      <a href="mailto:awoelexuan@gmail.com" className="nav-cta magnetic" onPointerMove={magnet} onPointerLeave={releaseMagnet}>联系我 <ArrowUpRight size={14}/></a>
       <button className="menu-toggle" aria-label={menu ? '关闭导航' : '打开导航'} aria-expanded={menu} onClick={() => setMenu(!menu)}>{menu ? <X/> : <Plus/>}</button>
     </header>
     <main>
       <section ref={hero} className="hero dimensional-hero" aria-labelledby="hero-title"><div className="hero-stage">
         <div className="hero-ambient" aria-hidden="true"/>
-        <div className="hero-copy"><div className="eyebrow hero-eyebrow"><span/> YANG XUANYI · AI PRODUCT</div><h1 id="hero-title">让想法，成为产品。</h1><p>我是杨玄一。探索 AI 应用、Agent 工作流与有温度的数字体验。</p><a className="hero-link" href="#journal">探索我的作品 <ArrowUpRight size={18}/></a></div>
+        <div className="hero-copy"><div className="eyebrow hero-eyebrow"><span/> YANG XUANYI · AI PRODUCT</div><h1 id="hero-title">让想法，成为产品。</h1><p>我是杨玄一。探索 AI 应用、Agent 工作流与有温度的数字体验。</p><a className="hero-link magnetic" href="#journal" onPointerMove={magnet} onPointerLeave={releaseMagnet}>探索我的作品 <ArrowUpRight size={18}/></a></div>
         <HeroScene paused={paused}/>
         <div className="hero-bottom"><span>AI 产品 · 设计 · 独立开发</span><a href="#journal" className="scroll-cue">SCROLL TO DISCOVER <ArrowDown size={14}/></a><button className="motion-control" onClick={() => setPaused(!paused)} aria-label={paused ? '播放动效' : '暂停动效'} aria-pressed={paused}>{paused ? <Play size={14}/> : <Pause size={14}/>}</button></div>
       </div></section>
@@ -101,7 +119,7 @@ export default function Home() {
           <button className={`post-card project-card ${post.style}`} onPointerMove={tilt} onPointerLeave={event => { event.currentTarget.style.setProperty('--rx', '0deg'); event.currentTarget.style.setProperty('--ry', '0deg'); }} onClick={() => setSelected(index)} aria-label={`阅读项目：${post.title}`}>
             <div className="post-topline"><span>{post.category}</span><ArrowUpRight size={21}/></div>
             <div className="project-card-title"><span className="project-name">{post.title}</span><h3>{post.headline}</h3></div>
-            <div className="project-art">{index === 0 ? <div className="product-phone-pair"><img src="/images/tf-rolls.webp" alt="TravelFilm 旅行胶卷界面" loading="lazy"/><img src="/images/tf-detail.webp" alt="TravelFilm 行程详情界面" loading="lazy"/></div> : <div className="browser-preview"><div className="screen-surface"><img className="project-cover" src={post.image} alt={post.alt} loading="lazy" decoding="async" width="1400" height="875"/></div></div>}</div>
+            <div className="project-art">{index === 0 ? <div className="product-phone-pair"><DeviceFrame src="/images/tf-rolls.webp" alt="TravelFilm 旅行胶卷界面"/><DeviceFrame src="/images/tf-detail.webp" alt="TravelFilm 行程详情界面"/></div> : <div className="browser-preview"><div className="screen-surface"><img className="project-cover" src={post.image} alt={post.alt} loading="lazy" decoding="async" width="1400" height="875"/></div></div>}</div>
             <div className="post-foot"><span>查看项目故事</span><span className="plus-circle"><Plus size={19}/></span></div>
           </button>
           <div className="project-result"><strong>{post.metric}</strong><span>{post.metricLabel}</span></div><p className="result-context">{post.secondary}</p>
