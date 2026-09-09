@@ -219,3 +219,9 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 /* Newly captured source images are already clean; render them without crop or zoom. */
 .photo-project .screenshot-crop,.ielts-project .screenshot-crop { aspect-ratio:16/10; }
 .photo-project .browser-preview .screenshot-crop .project-cover,.photo-project:hover .browser-preview .screenshot-crop .project-cover,.ielts-project .browser-preview .screen-surface .screenshot-crop .project-cover,.ielts-project:hover .browser-preview .screen-surface .screenshot-crop .project-cover,.reading-image-frame.photo-project .screenshot-crop .reading-cover,.reading-image-frame.ielts-project .screenshot-crop .reading-cover { transform:none; object-fit:contain; }
+
+/* Give the mobile product comparable visual weight to the desktop previews. */
+.travel-project .project-art { aspect-ratio:1.38; }
+.travel-project .product-phone-pair { height:100%; gap:7%; }
+.travel-project .product-phone-pair .device-position { height:98%; max-width:43%; }
+@media(max-width:700px) { .travel-project .project-art { aspect-ratio:1.28; }.travel-project .product-phone-pair { gap:9%; } }
