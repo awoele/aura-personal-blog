@@ -17,7 +17,9 @@
 .scene-caption span:last-child { display:block; color:#79859a; font-size:9px; letter-spacing:2px; margin-top:13px; }
 .dimensional-hero .hero-bottom { position:relative; bottom:auto; left:auto; right:auto; margin:0 6vw; }
 .project-card { --arrival:1; height:auto; padding:30px; display:grid; grid-template-rows:auto auto auto auto; gap:26px; perspective:1100px; transform-style:preserve-3d; box-shadow:0 1px 0 #ffffff18 inset,0 12px 24px -18px #0009; }
-.project-card:hover { transform:rotateX(var(--rx)) rotateY(var(--ry)) translateY(-9px); box-shadow:0 1px 0 #ffffff38 inset,0 28px 48px -22px #000b; }
+.project-card,.project-card:hover { transform:none; }
+.project-card:hover { box-shadow:0 1px 0 #ffffff38 inset,0 28px 48px -22px #000b; }
+.project-card .project-art { transform:rotateX(calc(var(--rx,0deg) * .35)) rotateY(calc(var(--ry,0deg) * .35)); transition:transform .7s var(--ease); }
 .project-card .post-topline,.project-card .project-card-title,.project-card .post-foot { position:relative; z-index:4; }
 .project-card .project-card-title { margin-top:0; }.project-card h3 { font-size:clamp(26px,2.5vw,34px); line-height:1.3; margin-top:12px; text-shadow:none; }
 .project-card .post-foot { pointer-events:none; }.project-card .project-shade { display:none; }
@@ -50,10 +52,15 @@
 .ielts-project .screen-surface img,.radar-project .screen-surface img,.reel-dashboard .screen-surface img { filter:brightness(.86) saturate(.88); transition:filter .8s var(--ease); }
 .ielts-project:hover .screen-surface img,.radar-project:hover .screen-surface img,.reel-dashboard:hover .screen-surface img { filter:brightness(.94) saturate(.94); }
 .loopit-real-covers { position:absolute; right:3%; top:30px; width:55%; height:370px; perspective:900px; }
-.loopit-real-covers img { position:absolute; width:36%; border:2px solid #65728a; border-radius:14px; box-shadow:15px 20px 40px #0007; }
-.loopit-real-covers img:nth-child(1) { left:0; top:30px; transform:rotateY(20deg) rotate(-12deg); }
-.loopit-real-covers img:nth-child(2) { left:30%; top:0; transform:translateZ(35px); }
-.loopit-real-covers img:nth-child(3) { left:61%; top:35px; transform:rotateY(-20deg) rotate(12deg); }
+.loopit-real-covers .case-glass { position:absolute; width:36%; padding:1px; border-radius:15px; background:linear-gradient(135deg,#e0e6edb3,#70798745 28%,#252b34 60%,#a9b5c47a); box-shadow:0 1px 0 #ffffff26 inset,0 12px 30px -10px #000b; overflow:hidden; transition:transform .9s var(--ease),box-shadow .9s var(--ease); }
+.loopit-real-covers .case-glass:after { content:''; position:absolute; inset:1px; border-radius:14px; pointer-events:none; box-shadow:0 0 0 1px #ffffff08 inset; background:linear-gradient(135deg,#ffffff09,transparent 35%); }
+.loopit-real-covers .case-glass img { display:block; width:100%; aspect-ratio:450/694; object-fit:cover; border-radius:14px; }
+.loopit-real-covers .case-glass:nth-child(1) { left:0; top:30px; transform:rotateY(15deg) rotate(-9deg); }
+.loopit-real-covers .case-glass:nth-child(2) { left:30%; top:0; transform:translateZ(35px); z-index:1; }
+.loopit-real-covers .case-glass:nth-child(3) { left:61%; top:35px; transform:rotateY(-15deg) rotate(9deg); }
+.experience-0:hover .case-glass:nth-child(1) { transform:translateY(-5px) rotateY(10deg) rotate(-7deg); }
+.experience-0:hover .case-glass:nth-child(2) { transform:translateY(-8px) translateZ(35px); }
+.experience-0:hover .case-glass:nth-child(3) { transform:translateY(-5px) rotateY(-10deg) rotate(7deg); }
 .project-reel { --reel:0; height:330svh; position:relative; background:#0a0c11; color:#f3f6ff; }
 .reel-stage { position:sticky; top:72px; height:calc(100svh - 72px); min-height:650px; overflow:hidden; padding:34px 0 22px; display:flex; flex-direction:column; }
 .reel-heading { margin:0 6vw 20px; display:flex; align-items:flex-end; justify-content:space-between; gap:25px; }
@@ -97,6 +104,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','PingFang S
 .motion-text>span { background-image:linear-gradient(90deg,#a5b3c8 40%,#546075 60%); }
 .magnetic { translate:var(--magnet-x,0px) var(--magnet-y,0px); transition:translate .6s var(--ease),background .3s,border-color .3s; }
 .motion-paused .magnetic { translate:none!important; }
+.motion-paused .project-card .project-art { transform:none; }
 .journal,.about { background:#121419; }
 .section-heading .eyebrow,.about-top { color:#a4adbd; }
 .section-heading>p,.project-result>span,.result-context,.post-meta { color:#a2aab8; }
@@ -123,6 +131,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','PingFang S
   .project-reel { height:330svh; }.reel-stage { top:64px; height:calc(100svh - 64px); min-height:640px; padding-top:24px; }.reel-heading { display:block; margin:0 24px 18px; }.reel-heading h2 { font-size:31px; }.reel-heading .eyebrow { font-size:9px; }.reel-controls { display:flex; width:fit-content; margin-top:18px; }.reel-controls button { padding:7px 12px; font-size:11px; }.reel-track { gap:5vw; padding:0 6vw; }.reel-panel { grid-template-columns:1fr; grid-template-rows:auto minmax(0,1fr); padding:23px; border-radius:22px; gap:24px; }.reel-copy .eyebrow { font-size:8px; }.reel-copy h3 { font-size:29px; margin:14px 0 12px; }.reel-copy p { display:none; }.reel-copy a { font-size:12px; }.reel-case-stack,.reel-phone-stack { min-height:200px; height:100%; width:88%; margin:auto; }.reel-case-stack img { width:36%; }.reel-browser { width:100%; margin-top:0; }.reel-progress { margin-top:18px; gap:15px; font-size:8px; }.reel-progress>span:first-child { letter-spacing:1px; }.reel-phone-stack img { border-radius:13px; border-width:2px; }.reading-cover { height:210px; }
 }
 @media(prefers-reduced-motion:reduce) {
+  .project-card .project-art { transform:none; }
   .magnetic { translate:none; }.motion-text,.motion-text>span { background:none; -webkit-text-fill-color:currentColor; }
   .project-card .screen-surface,.project-card .product-phone-pair,.reel-copy,.reel-browser .screen-surface,.reel-case-stack,.reel-phone-stack { transform:none; opacity:1; }
   .dimensional-hero { height:100svh; min-height:800px; }.hero-scene,.metal-parallax { transform:none; }.project-reel { height:auto; }.reel-stage { position:relative; height:auto; top:0; }.reel-track { flex-direction:column; transform:none!important; gap:28px; }.reel-panel { flex-basis:auto; min-height:500px; }.reel-controls,.reel-progress { display:none; }.scene-caption { display:none; }
@@ -203,6 +212,11 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 *::-webkit-scrollbar { display:none; width:0; height:0; }
 .reading-image-frame { overflow:hidden; border-radius:12px; margin-bottom:26px; }
 .reading-image-frame .reading-cover { display:block; width:100%; margin:0; }
+.reading-image-frame.travel-project { display:flex; align-items:center; justify-content:center; height:clamp(320px,55vw,520px); padding:26px 22px; }
+.reading-image-frame.travel-project .product-phone-pair { height:100%; gap:9%; }
+.reading-image-frame.travel-project .device-position { height:94%; max-width:40%; }
+.motion-paused .case-glass { transition:none; }
+@media(prefers-reduced-motion:reduce) { .case-glass { transition:none!important; }.experience-0:hover .case-glass { transform:none; } }
 .reading-panel[data-slot='dialog-content'] { display:block; }
 
 /* Fresh captures share one native 16:10 canvas, with no crop or zoom. */
