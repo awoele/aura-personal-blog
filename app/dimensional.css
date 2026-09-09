@@ -203,25 +203,25 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 *::-webkit-scrollbar { display:none; width:0; height:0; }
 .reading-image-frame { overflow:hidden; border-radius:12px; margin-bottom:26px; }
 .reading-image-frame .reading-cover { display:block; width:100%; margin:0; }
-/* Trim only the captured page perimeter, including the source scrollbar. */
-.ielts-project .browser-preview .screen-surface .project-cover { transform:scale(1.03); }
-.reading-image-frame.ielts-project { aspect-ratio:16/10; background:#e0e0dd; }
-.reading-image-frame.ielts-project .reading-cover { width:100%; height:100%; object-fit:fill; transform:scale(1.03); }
 .reading-panel[data-slot='dialog-content'] { display:block; }
 
-/* Crop source-page chrome inside the source image, before fitting the common frame. */
-.screenshot-crop { position:relative; width:100%; aspect-ratio:1265/712; overflow:hidden; flex-shrink:0; }
-.ielts-project .screenshot-crop { aspect-ratio:1385/866; }
+/* Fresh captures share one native 16:10 canvas, with no crop or zoom. */
+.screenshot-crop { position:relative; width:100%; aspect-ratio:16/10; overflow:hidden; flex-shrink:0; }
 .screen-surface { display:flex; align-items:center; justify-content:center; }
-.browser-preview .screenshot-crop .project-cover,.project-card:hover .browser-preview .screenshot-crop .project-cover,.ielts-project .browser-preview .screen-surface .screenshot-crop .project-cover,.reading-image-frame .screenshot-crop .reading-cover { display:block; width:100%; height:100%; min-height:0; object-fit:fill; transform:scale(1.03); border-radius:0; }
+.browser-preview .screenshot-crop .project-cover,.project-card:hover .browser-preview .screenshot-crop .project-cover,.reading-image-frame .screenshot-crop .reading-cover { display:block; width:100%; height:100%; min-height:0; object-fit:contain; transform:none; border-radius:0; }
 .reading-image-frame:not(.travel-project) { aspect-ratio:16/10; display:flex; align-items:center; justify-content:center; background:#12151c; }
 .reading-image-frame.photo-project { background:#15130f; }
-/* Newly captured source images are already clean; render them without crop or zoom. */
-.photo-project .screenshot-crop,.ielts-project .screenshot-crop { aspect-ratio:16/10; }
-.photo-project .browser-preview .screenshot-crop .project-cover,.photo-project:hover .browser-preview .screenshot-crop .project-cover,.ielts-project .browser-preview .screen-surface .screenshot-crop .project-cover,.ielts-project:hover .browser-preview .screen-surface .screenshot-crop .project-cover,.reading-image-frame.photo-project .screenshot-crop .reading-cover,.reading-image-frame.ielts-project .screenshot-crop .reading-cover { transform:none; object-fit:contain; }
 
 /* Give the mobile product comparable visual weight to the desktop previews. */
-.travel-project .project-art { aspect-ratio:1.38; }
 .travel-project .product-phone-pair { height:100%; gap:7%; }
 .travel-project .product-phone-pair .device-position { height:98%; max-width:43%; }
+/* Both cards in each desktop row share the same content tracks. */
+@media(min-width:1101px) {
+  .project-grid { row-gap:26px; }
+  .project-grid > .post-shell { display:grid; grid-row:span 7; grid-template-rows:subgrid; margin-bottom:32px; }
+  .project-card { grid-row:span 4; grid-template-rows:subgrid; row-gap:26px; }
+  .project-card .project-art { aspect-ratio:1.38; }
+  .project-card .post-foot { margin-top:0; }
+  .project-grid .project-result,.project-grid .result-context { margin-top:0; margin-bottom:0; }
+}
 @media(max-width:700px) { .travel-project .project-art { aspect-ratio:1.28; }.travel-project .product-phone-pair { gap:9%; } }

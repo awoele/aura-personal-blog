@@ -43,7 +43,7 @@ export const projects = [
   {
     category: '内容雷达 · 开源二次开发', date: '2026.05 — 2026.06', title: 'TrendRadar',
     headline: '从信息噪声里，\n找到值得追踪的信号。', subtitle: '聚焦 Vibe Coding 的采集、打标与筛选工作流。',
-    image: '/images/radar-interface.webp', alt: 'TrendRadar 热点内容看板线上截图', style: 'radar-project',
+    image: '/images/radar-interface-fresh.webp', alt: 'TrendRadar 热点内容看板重新截取的完整界面', style: 'radar-project',
     metric: '90 → 20', metricLabel: '分钟／每 100 条内容的人工筛选', secondary: '连续 14 天 · 去重后沉淀 699 条内容',
     url: 'https://awoele.github.io/TrendRadar/content/', tech: 'Python · PowerShell · TikHub API · AI Agent · GitHub Pages',
     role: '产品重构与开源二次开发',
