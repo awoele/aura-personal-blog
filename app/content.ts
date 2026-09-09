@@ -30,7 +30,7 @@ export const projects = [
   {
     category: 'AI 学习 Agent · 独立开发', date: '2026.04 — 2026.07', title: 'IELTS Workbench',
     headline: '把学习，\n变成清晰的下一步。', subtitle: '计划、训练、复盘，连接为一条学习路径。',
-    image: '/images/ielts-interface.webp', alt: 'IELTS Workbench 阅读训练历史界面', style: 'ielts-project',
+    image: '/images/ielts-orbit.webp', alt: 'IELTS Orbit 当前本地首页：环绕学习卡片', style: 'ielts-project',
     metric: '83.3%', metricLabel: '核心问题识别一致率', secondary: '24 份写作／口语样本 · 双轮评估',
     url: 'https://ielts.awoelexuan.com/', tech: 'React · TypeScript · Cloudflare Workers · D1 · Gemini API',
     role: 'AI 产品设计与独立开发',
