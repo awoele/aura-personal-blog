@@ -17,7 +17,7 @@ export const projects = [
   {
     category: '摄影网站 · 独立运营', date: '2026.03 — 2026.08', title: 'MYSTIC ONE AURA',
     headline: '让每一帧，\n都被好好看见。', subtitle: '为持续发布与沉浸浏览，设计同一个空间。',
-    image: '/images/photo-interface.webp', alt: 'MYSTIC ONE AURA 摄影网站真实布局', style: 'photo-project',
+    image: '/images/photo-nature.webp', alt: 'MYSTIC ONE AURA 当前 Nature 风景图集界面', style: 'photo-project',
     metric: '549', metricLabel: '幅作品 · 首个完整统计月', secondary: '186 UV · 1,172 次作品详情打开',
     url: 'https://awoelexuan.com/', tech: 'Next.js · TypeScript · Tailwind CSS · Google Cloud Storage · Vercel',
     role: '产品设计与独立运营',
@@ -30,7 +30,7 @@ export const projects = [
   {
     category: 'AI 学习 Agent · 独立开发', date: '2026.04 — 2026.07', title: 'IELTS Workbench',
     headline: '把学习，\n变成清晰的下一步。', subtitle: '计划、训练、复盘，连接为一条学习路径。',
-    image: '/images/ielts-orbit.webp', alt: 'IELTS Orbit 当前本地首页：环绕学习卡片', style: 'ielts-project',
+    image: '/images/ielts-orbit-fresh.webp', alt: 'IELTS Orbit 当前本地首页：环绕学习卡片', style: 'ielts-project',
     metric: '83.3%', metricLabel: '核心问题识别一致率', secondary: '24 份写作／口语样本 · 双轮评估',
     url: 'https://ielts.awoelexuan.com/', tech: 'React · TypeScript · Cloudflare Workers · D1 · Gemini API',
     role: 'AI 产品设计与独立开发',
