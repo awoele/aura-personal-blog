@@ -10,57 +10,37 @@ import DeviceFrame from './device-frame';
 
 export default function Home() {
   const hero = useRef<HTMLElement>(null);
-  const showcase = useRef<HTMLElement>(null);
-  const rail = useRef<HTMLDivElement>(null);
-  const [sceneIndex, setSceneIndex] = useState(0);
   const [selected, setSelected] = useState<number | null>(null);
   const [paused, setPaused] = useState(false);
   const [menu, setMenu] = useState(false);
   useEffect(() => {
     const media = matchMedia('(prefers-reduced-motion: reduce)');
     const cards = Array.from(document.querySelectorAll<HTMLElement>('.project-card'));
-    const scenes = Array.from(document.querySelectorAll<HTMLElement>('.reel-panel'));
     const headings = Array.from(document.querySelectorAll<HTMLElement>('.section-heading h2, .reel-heading h2, .about-grid h2'));
     headings.forEach(heading => heading.classList.add('motion-text'));
-    let frame = 0, smoothHero = 0, smoothRail = 0, previousTime = 0, currentIndex = -1;
+    let frame = 0, smoothHero = 0, previousTime = 0;
     const update = (now: number) => {
       frame = 0;
       const y = window.scrollY;
       const active = !media.matches && !paused;
       const heroRange = Math.max((hero.current?.offsetHeight ?? innerHeight) - innerHeight, 1);
       const heroTarget = active ? Math.max(0, Math.min(y / heroRange, 1)) : 0;
-      const rect = showcase.current?.getBoundingClientRect();
-      const railTarget = active && rect ? Math.max(0, Math.min((72 - rect.top) / Math.max(rect.height - innerHeight + 72, 1), 1)) : 0;
       const dt = Math.min(now - previousTime || 16, 60); previousTime = now;
       const easing = 1 - Math.exp(-dt / 85);
       smoothHero += (heroTarget - smoothHero) * easing;
-      smoothRail += (railTarget - smoothRail) * easing;
       hero.current?.style.setProperty('--scroll', String(smoothHero));
-      showcase.current?.style.setProperty('--reel', String(smoothRail));
       cards.forEach(card => {
         const top = card.getBoundingClientRect().top;
         const arrival = active ? Math.max(0, Math.min((innerHeight - top) / (innerHeight * .7), 1)) : 1;
         card.style.setProperty('--arrival', String(arrival));
-      });
-        const sceneSteps = Math.max(scenes.length - 1, 1);
-        scenes.forEach((scene, i) => {
-          const offset = active ? Math.max(-1, Math.min(smoothRail * sceneSteps - i, 1)) : 0;
-        scene.style.setProperty('--scene-focus', String(1 - Math.abs(offset)));
-        scene.style.setProperty('--scene-offset', String(offset));
       });
       headings.forEach(heading => {
         const top = heading.getBoundingClientRect().top;
         const read = active ? Math.max(0, Math.min((innerHeight * 1.03 - top) / (innerHeight * .48), 1)) : 1;
         heading.style.setProperty('--read', String(read));
       });
-        const firstScene = scenes[0];
-        const lastScene = scenes[scenes.length - 1];
-        const travel = firstScene && lastScene ? Math.max(lastScene.offsetLeft - firstScene.offsetLeft, 0) : 0;
-      rail.current?.style.setProperty('--rail-x', `${-smoothRail * travel}px`);
-        const index = Math.min(sceneSteps, Math.round(smoothRail * sceneSteps));
-      if (index !== currentIndex) { currentIndex = index; setSceneIndex(index); }
       document.documentElement.style.setProperty('--page-progress', `${y / Math.max(document.documentElement.scrollHeight - innerHeight, 1) * 100}%`);
-      if (Math.abs(heroTarget - smoothHero) + Math.abs(railTarget - smoothRail) > .0001) frame = requestAnimationFrame(update);
+      if (Math.abs(heroTarget - smoothHero) > .0001) frame = requestAnimationFrame(update);
     };
     const scroll = () => { if (!frame) frame = requestAnimationFrame(update); };
     window.addEventListener('scroll', scroll, { passive: true });
@@ -73,13 +53,6 @@ export default function Home() {
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
     return () => { cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener('scroll', scroll); window.removeEventListener('resize', scroll); media.removeEventListener('change', scroll); };
   }, [paused]);
-  const goToScene = (index: number) => {
-    if (!showcase.current) return;
-    if (paused || matchMedia('(prefers-reduced-motion: reduce)').matches) { showcase.current.querySelectorAll('.reel-panel')[index]?.scrollIntoView({ block: 'center' }); return; }
-    const start = showcase.current.getBoundingClientRect().top + window.scrollY - 72;
-    const sceneSteps = Math.max(showcase.current.querySelectorAll('.reel-panel').length - 1, 1);
-    window.scrollTo({ top: start + index / sceneSteps * (showcase.current.offsetHeight - innerHeight + 72), behavior: paused || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
-  };
   const tilt = (event: PointerEvent<HTMLButtonElement>) => {
     if (paused || event.pointerType !== 'mouse' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -138,10 +111,10 @@ export default function Home() {
         </article>)}
         </div>
       </section>
-      <ProjectReel sectionRef={showcase} railRef={rail} index={sceneIndex} select={goToScene}/>
+      <ProjectReel paused={paused}/>
       <section id="about" className="about section-wrap">
         <div className="about-top" data-reveal><div className="eyebrow">THE HUMAN BEHIND THE PRODUCTS</div><span className="demo-label">杨玄一 / YANG XUANYI</span></div>
-        <div className="about-grid"><div data-reveal><h2>研究问题。<br/>设计体验。<br/><span>也亲手把它做出来。</span></h2><div className="about-directions"><span>AI 应用</span><span>Agent 工作流</span><span>内容与效率产品</span></div></div><div className="about-copy" data-reveal><p>天津大学环境科学硕士在读，入选首批「科创硕士」培养项目。曾在 Loopit 与百度担任产品经理实习生，独立设计、开发和运营多个产品。</p><p className="muted">从研究中训练问题定义与证据意识，在产品实践中连接用户需求、交互设计、数据分析与上线交付。</p><div className="skill-lines"><div><span>产品与交付</span><p>用户 / 竞品研究、需求拆解、PRD、流程与高保真原型、上线验收与复盘</p></div><div><span>AI 与数据</span><p>LLM / Agent 场景设计、真实任务评测、Badcase 归因、Python / SQL、漏斗与留存分析</p></div><div><span>内容与观察</span><p>小红书个人账号 1K+、救助主题账号 4K+；选题策划、内容发布与用户反馈迭代</p></div></div></div></div>
+        <div className="about-grid"><div data-reveal><h2>研究问题。<br/>设计体验。<br/><span>也亲手把它做出来。</span></h2><div className="about-directions"><span>AI 应用</span><span>Agent 工作流</span><span>内容与效率产品</span></div></div><div className="about-copy" data-reveal><p>天津大学环境科学硕士在读，入选首批「科创硕士」培养项目。曾在 <strong>Loopit 与百度</strong>担任产品经理实习生，<strong>独立设计、开发和运营</strong>多个产品。</p><p className="muted">从研究中训练问题定义与证据意识，在产品实践中连接用户需求、交互设计、数据分析与上线交付。</p><div className="skill-lines"><div><span>产品与交付</span><p>用户 / 竞品研究、需求拆解、PRD、流程与高保真原型、上线验收与复盘</p></div><div><span>AI 与数据</span><p>LLM / Agent 场景设计、真实任务评测、Badcase 归因、Python / SQL、漏斗与留存分析</p></div><div><span>内容与观察</span><p>小红书个人账号 1K+、救助主题账号 4K+；选题策划、内容发布与用户反馈迭代</p></div></div></div></div>
         <div className="education-grid" data-reveal><div><div className="eyebrow">2024.09 — 2027.06</div><h3>天津大学</h3><p>环境科学 · 硕士 · 985 工程</p><strong>3.84 <small>/ 4.0 GPA</small></strong><span>综合排名 2 / 21 · 首批科创硕士</span></div><div><div className="eyebrow">2020.09 — 2024.06</div><h3>河南农业大学</h3><p>环境科学 · 学士</p><strong>1 <small>/ 201 综合排名</small></strong><span>GPA 3.92 / 5.0 · 绩点排名 1 / 201</span></div><div className="research-card"><div className="eyebrow">RESEARCH & INVENTION</div><h3>以证据，回应问题。</h3><p>第一作者 TOP 一区 SCI 综述论文 1 篇<br/>共同作者论文 3 篇</p><strong>5 <small>项专利申请 / 4 项授权</small></strong><span>第一发明人 · 主导文献调研与技术方案撰写</span></div></div>
         <a href="mailto:awoelexuan@gmail.com" className="closing-link" data-reveal><span>下一个好产品，<br/>从一次交流开始。<small>awoelexuan@gmail.com</small></span><span className="closing-arrow"><ArrowUpRight/></span></a>
       </section>
@@ -150,4 +123,3 @@ export default function Home() {
     <Dialog open={selected !== null} onOpenChange={open => { if (!open) setSelected(null); }}><DialogContent className="reading-panel" showCloseButton={false}>{selected !== null && <><div className="reading-top"><span className="eyebrow">PROJECT / {posts[selected].role}</span><DialogClose className="reader-close" aria-label="关闭项目"><X size={20}/></DialogClose></div><div className={`reading-image-frame ${posts[selected].style}`}>{selected===0 ? <div className="product-phone-pair"><DeviceFrame src="/images/tf-rolls.webp" alt="TravelFilm 旅行胶卷界面"/><DeviceFrame src="/images/tf-detail.webp" alt="TravelFilm 行程详情界面"/></div> : <div className="screenshot-crop"><img className="reading-cover" src={posts[selected].image} alt={posts[selected].alt} width="1400" height="875"/></div>}</div><DialogTitle className="reading-title">{posts[selected].title}</DialogTitle><DialogDescription className="reading-description">{posts[selected].date} · {posts[selected].subtitle}</DialogDescription><div className="reading-body">{posts[selected].body.map(p => <p key={p}>{p}</p>)}</div><div className="reading-end">{posts[selected].tech}</div><a className="project-visit" href={posts[selected].url} target="_blank" rel="noreferrer">访问项目 <ArrowUpRight size={17}/></a><button className="next-post" onClick={() => setSelected((selected + 1) % posts.length)}>下一个项目：{posts[(selected + 1) % posts.length].title}<ArrowRight size={18}/></button></>}</DialogContent></Dialog>
   </div>;
 }
-

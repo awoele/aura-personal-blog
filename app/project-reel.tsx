@@ -1,5 +1,6 @@
-import type { RefObject } from 'react';
-import { ArrowUpRight } from 'lucide-react';
+'use client';
+import { useEffect, useRef, useState, type PointerEvent } from 'react';
+import { ArrowUpRight, ArrowLeft, ArrowRight } from 'lucide-react';
 
 const moments = [
   { label:'模板动机', eyebrow:'UNDERSTAND THE WHY', title:<>每一次创造，<br/>都有一个起点。</>, description:'从用户动机出发，将创作意愿与消费价值放在同一张地图里观察。', image:'/images/loopit-work-0.webp', alt:'Loopit 上线模板动机地图', url:'https://awoele.github.io/loopit-template-motivation-map/', style:'work-motivation' },
@@ -18,19 +19,81 @@ const detailViews = [
   { image:'/images/loopit-work-5-lab.webp', alt:'Loopit Lab 平台 Power 管理页面' },
 ];
 
-export default function ProjectReel({ sectionRef, railRef, index, select }: {
-  sectionRef: RefObject<HTMLElement | null>; railRef: RefObject<HTMLDivElement | null>; index: number; select: (index: number) => void;
-}) {
-  return <section id="moments" className="project-reel loopit-work-reel" ref={sectionRef} aria-label="Loopit 项目与完整工作展示">
+export default function ProjectReel({ paused }: { paused: boolean }) {
+  const viewport = useRef<HTMLDivElement>(null);
+  const section = useRef<HTMLElement>(null);
+  const [index, setIndex] = useState(0);
+  const drag = useRef({ x:0, y:0, left:0, id:-1, moved:false });
+  const select = (next: number) => {
+    const el = viewport.current;
+    if (!el) return;
+    const panels = el.querySelectorAll<HTMLElement>('.reel-panel');
+    const target = panels[Math.max(0, Math.min(next, panels.length - 1))];
+    el.scrollTo({ left:target.offsetLeft - panels[0].offsetLeft, behavior:paused || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+  };
+  useEffect(() => {
+    const el = viewport.current;
+    if (!el) return;
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      const panels = Array.from(el.querySelectorAll<HTMLElement>('.reel-panel'));
+      const step = panels[1].offsetLeft - panels[0].offsetLeft;
+      const position = el.scrollLeft / Math.max(step,1);
+      setIndex(Math.max(0, Math.min(Math.round(position), panels.length - 1)));
+      section.current?.style.setProperty('--reel', String(position / (panels.length - 1)));
+      panels.forEach((panel,i) => {
+        const offset = Math.max(-1, Math.min(position - i, 1));
+        panel.style.setProperty('--scene-focus', String(1 - Math.abs(offset)));
+        panel.style.setProperty('--scene-offset', String(offset));
+      });
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const resize = new ResizeObserver(schedule);
+    resize.observe(el);
+    el.addEventListener('scroll', schedule, { passive:true });
+    update();
+    return () => { cancelAnimationFrame(frame); resize.disconnect(); el.removeEventListener('scroll', schedule); };
+  }, []);
+  const startDrag = (event: PointerEvent<HTMLDivElement>) => {
+    drag.current.moved = false;
+    if (event.pointerType !== 'mouse' || event.button !== 0) return;
+    drag.current = { x:event.clientX, y:event.clientY, left:event.currentTarget.scrollLeft, id:event.pointerId, moved:false };
+  };
+  const moveDrag = (event: PointerEvent<HTMLDivElement>) => {
+    const state = drag.current;
+    if (state.id !== event.pointerId) return;
+    const dx = event.clientX - state.x;
+    if (!state.moved && Math.abs(dx) < 8) return;
+    if (!state.moved && Math.abs(event.clientY - state.y) > Math.abs(dx)) { state.id = -1; return; }
+    if (!state.moved) {
+      state.moved = true;
+      event.currentTarget.setPointerCapture(event.pointerId);
+      event.currentTarget.classList.add('is-dragging');
+    }
+    event.preventDefault();
+    event.currentTarget.scrollLeft = state.left - dx;
+  };
+  const endDrag = (event: PointerEvent<HTMLDivElement>) => {
+    if (drag.current.id !== event.pointerId) return;
+    drag.current.id = -1;
+    event.currentTarget.classList.remove('is-dragging');
+    if (event.currentTarget.hasPointerCapture(event.pointerId)) event.currentTarget.releasePointerCapture(event.pointerId);
+    if (drag.current.moved) {
+      const panels = event.currentTarget.querySelectorAll<HTMLElement>('.reel-panel');
+      select(Math.round(event.currentTarget.scrollLeft / Math.max(panels[1].offsetLeft - panels[0].offsetLeft,1)));
+    }
+  };
+  return <section id="moments" className="project-reel loopit-work-reel" ref={section} aria-label="Loopit 项目与完整工作展示">
     <div className="reel-stage">
       <div className="reel-heading"><div><div className="eyebrow">THE MANY SIDES OF LOOPIT</div><h2>好想法，<span>不止一面。</span></h2></div><div className="reel-controls" aria-label="选择 Loopit 工作展示">{moments.map((moment,i)=><button key={moment.label} onClick={()=>select(i)} aria-pressed={index===i}>{moment.label}</button>)}</div></div>
-      <div className="reel-viewport"><div className="reel-track" ref={railRef}>
+      <div className="reel-viewport" ref={viewport} tabIndex={0} aria-label="左右滑动浏览 Loopit 展示" onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onLostPointerCapture={endDrag} onDragStart={event=>event.preventDefault()} onClickCapture={event=>{ if(drag.current.moved){event.preventDefault();event.stopPropagation();drag.current.moved=false;} }} onKeyDown={event=>{ if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();select(index+(event.key==='ArrowRight'?1:-1));} }}><div className="reel-track">
         {moments.map((moment,i)=><article key={moment.label} className={`reel-panel loopit-work-panel ${moment.style}`}>
           <div className="reel-copy"><span className="work-index">LOOPIT / 0{i+1}</span><span className="eyebrow">{moment.eyebrow}</span><h3>{moment.title}</h3><p>{moment.description}</p><a className="work-visit" href={moment.url} target="_blank" rel="noreferrer">{i===2?'探索全部案例':'查看'+moment.label}<span><ArrowUpRight size={19}/></span></a></div>
           <div className="work-art"><a className="work-screens" href={moment.url} target="_blank" rel="noreferrer" aria-label={`打开${moment.label}`}><figure className="work-window work-window-main"><img src={moment.image} alt={moment.alt} loading="lazy" width="1400" height="875"/></figure><figure className="work-window work-window-detail"><img src={detailViews[i].image} alt={detailViews[i].alt} loading="lazy" width="1400" height="875"/></figure></a></div>
         </article>)}
       </div></div>
-      <div className="reel-progress"><span>SCROLL TO EXPLORE</span><div><i/></div><span>0{index+1} / 0{moments.length}</span></div>
+      <div className="reel-progress"><span>左右滑动，探索更多</span><div><i/></div><span aria-live="polite">0{index+1} / 0{moments.length}</span><nav className="reel-arrows" aria-label="切换展示"><button type="button" onClick={()=>select(index-1)} disabled={index===0} aria-label="上一个展示"><ArrowLeft size={18}/></button><button type="button" onClick={()=>select(index+1)} disabled={index===moments.length-1} aria-label="下一个展示"><ArrowRight size={18}/></button></nav></div>
     </div>
   </section>;
 }
