@@ -395,12 +395,17 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .experience-1 .experience-banner { background:#121820; display:grid; grid-template-columns:42% 58%; align-items:center; height:370px; padding-right:34px; }
 .experience-1 .experience-banner-shade { display:none; }
 .experience-1 .company-heading { position:relative; align-self:start; z-index:1; max-width:none; padding-right:20px; }
-.baidu-visual { min-width:0; height:302px; display:grid; align-items:center; }
+.baidu-visual { position:relative; min-width:0; height:302px; perspective:1000px; }
 .baidu-browser-preview { display:block; height:100%; min-height:0; padding:3px; border:1px solid #c7d4e34d; border-radius:15px; background:linear-gradient(135deg,#68747f,#252c35 28%,#151b22 74%,#68747f); box-shadow:0 2px 0 #ffffff17 inset,0 24px 42px -20px #000c; overflow:hidden; transition:transform .9s var(--ease),box-shadow .9s var(--ease); }
 .baidu-browser-bar { display:flex; align-items:center; gap:18px; height:25px; padding:0 10px; color:#909dab; background:#202730; font-size:9px; letter-spacing:.02em; border-radius:11px 11px 0 0; }
 .baidu-browser-bar>span:first-child { font-size:7px; color:#72808e; letter-spacing:2px; }
 .baidu-browser-preview img { display:block; width:100%; height:calc(100% - 25px); object-fit:cover; object-position:top; border-radius:0 0 11px 11px; }
-@media(hover:hover) { .baidu-browser-preview:hover { transform:translateY(-5px); box-shadow:0 2px 0 #ffffff25 inset,0 30px 50px -20px #000e; } }
+.baidu-visual .baidu-browser-preview { position:absolute; width:68%; height:76%; }
+.baidu-shot-poem { top:0; left:0; z-index:1; transform:rotate(-3deg); }
+.baidu-shot-real { top:17%; right:0; z-index:2; transform:rotate(2deg); }
+.baidu-visual .baidu-shot-home { left:4%; bottom:0; width:46%; height:58%; z-index:3; transform:rotate(-2deg); }
+@media(hover:hover) { .baidu-browser-preview:hover { z-index:4; transform:translateY(-5px); box-shadow:0 2px 0 #ffffff25 inset,0 30px 50px -20px #000e; } }
+.baidu-browser-preview:focus-visible { z-index:4; transform:translateY(-5px); outline:2px solid #d3e1ed; outline-offset:3px; }
 .motion-paused .baidu-browser-preview { transform:none; transition:none; }
 @media(prefers-reduced-motion:reduce) { .baidu-browser-preview { transform:none!important; transition:none; } }
 @media(max-width:700px) {
@@ -418,7 +423,10 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   .loopit-real-covers .case-glass:nth-child(2) { left:31.5%; top:6px; transform:translateZ(12px); }
   .loopit-real-covers .case-glass:nth-child(3) { left:61%; top:23px; transform:rotate(7deg); }
   .baidu-visual { order:1; width:calc(100% - 48px); height:auto; aspect-ratio:1.2; margin:8px 24px 24px; flex:none; }
-  .baidu-browser-preview { width:100%; height:auto; border-radius:11px; }
+  .baidu-browser-preview { border-radius:11px; }
   .baidu-browser-bar { border-radius:7px 7px 0 0; height:22px; }
-  .baidu-browser-preview img { height:auto; aspect-ratio:16/10; border-radius:0 0 7px 7px; }
+  .baidu-browser-preview img { height:calc(100% - 22px); border-radius:0 0 7px 7px; }
+  .baidu-visual .baidu-browser-preview { width:78%; height:67%; }
+  .baidu-shot-real { top:24%; }
+  .baidu-visual .baidu-shot-home { width:57%; height:47%; }
 }
