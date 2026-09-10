@@ -245,7 +245,12 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   .project-card .post-foot { margin-top:0; }
   .project-grid .project-result,.project-grid .result-context { margin-top:0; margin-bottom:0; }
 }
-@media(max-width:700px) { .travel-project .project-art { aspect-ratio:1.28; }.travel-project .product-phone-pair { gap:9%; } }
+@media(max-width:700px) {
+  .project-card { container-type:inline-size; }
+  .project-card .project-art { aspect-ratio:1.28; }
+  .project-card h3 { font-size:clamp(20px,9.3cqw,28px); min-height:2.6em; }
+  .travel-project .product-phone-pair { gap:9%; }
+}
 
 /* Six complete Loopit stories, presented on quiet dimensional stages. */
 .loopit-work-reel { height:630svh; }
