@@ -156,6 +156,12 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','PingFang S
 .device-key { position:absolute; width:2px; background:linear-gradient(#bbb9b3,#393c40,#9d9c98); border-radius:3px; }
 .device-key-left { left:-2px; top:22%; height:13%; }.device-key-right { right:-2px; top:27%; height:9%; }
 @keyframes device-breathe { 0%,100% { translate:0 3px; } 50% { translate:0 -5px; } }
+.project-card .browser-preview { animation:device-breathe 7s ease-in-out infinite; }
+.photo-project .browser-preview { animation-delay:-1.2s; }
+.ielts-project .browser-preview { animation-delay:-3.5s; }
+.radar-project .browser-preview { animation-delay:-5.2s; }
+.motion-paused .project-card .browser-preview { animation:none; translate:none; transform:none; }
+@media(prefers-reduced-motion:reduce) { .project-card .browser-preview { animation:none; translate:none; transform:none; } }
 .reel-phone-stack { display:flex; align-items:center; justify-content:center; gap:8%; min-height:0; height:90%; width:100%; }
 .reel-phone-stack .device-position { height:90%; max-width:43%; transform:translateY(calc((1 - var(--scene-focus,1)) * 22px)) rotate(-5deg); }
 .reel-phone-stack .device-position:last-child { transform:translateY(calc(12px + (1 - var(--scene-focus,1)) * -22px)) rotate(5deg); }
