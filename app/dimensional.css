@@ -435,11 +435,6 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .reading-image-frame.ielts-project img,.reading-image-frame.radar-project img {
   filter:brightness(.9) saturate(.94);
 }
-.iphone-17-pro-max .device-frame,.iphone-17-pro-max:nth-child(2) .device-frame {
-  --edge:#929daa; background:var(--capture-rim);
-  box-shadow:0 0 0 .5px #b3bdc94d,0 0 0 1px #141820 inset,var(--capture-shadow);
-}
-
 /* A compact portrait exhibition, with depth inside its existing aligned footprint. */
 .portrait-gallery { perspective:1000px; isolation:isolate; }
 .portrait-gallery .about-portrait {
