@@ -439,3 +439,54 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   --edge:#929daa; background:var(--capture-rim);
   box-shadow:0 0 0 .5px #b3bdc94d,0 0 0 1px #141820 inset,var(--capture-shadow);
 }
+
+/* A compact portrait exhibition, with depth inside its existing aligned footprint. */
+.portrait-gallery { perspective:1000px; isolation:isolate; }
+.portrait-gallery .about-portrait {
+  --portrait-rx:0deg; --portrait-ry:0deg; --portrait-light-x:50%; --portrait-light-y:30%;
+  padding:0; border:0; background:none; overflow:visible; cursor:pointer;
+  box-shadow:none; transform-style:preserve-3d; -webkit-tap-highlight-color:transparent;
+}
+.portrait-gallery[data-entered='true'] .about-portrait { animation:portrait-unfold 1.15s var(--ease) both; }
+.portrait-gallery .about-portrait:nth-child(1) { --portrait-entry-x:28px; --portrait-entry-turn:-8deg; }
+.portrait-gallery .about-portrait:nth-child(2) { --portrait-entry-x:0px; --portrait-entry-turn:0deg; animation-delay:.12s; }
+.portrait-gallery .about-portrait:nth-child(3) { --portrait-entry-x:-28px; --portrait-entry-turn:8deg; animation-delay:.24s; }
+.portrait-gallery .about-portrait::after { content:none; }
+.portrait-surface {
+  position:absolute; inset:0; display:block; overflow:hidden; border-radius:inherit; background:#141c25;
+  transform:perspective(750px) rotateX(var(--portrait-rx)) rotateY(var(--portrait-ry));
+  box-shadow:0 0 0 1px #d5e4f126,0 14px 30px -16px #0008;
+  transition:transform .65s var(--ease),box-shadow .65s var(--ease),filter .65s var(--ease);
+}
+.portrait-surface::before {
+  content:''; position:absolute; inset:0; z-index:2; pointer-events:none; border-radius:inherit; opacity:0;
+  background:radial-gradient(ellipse at var(--portrait-light-x) var(--portrait-light-y),#e1efff30,transparent 65%),linear-gradient(125deg,transparent 15%,#ffffff15 40%,transparent 64%);
+  transition:opacity .65s var(--ease);
+}
+.portrait-surface::after { content:''; position:absolute; inset:0; z-index:3; border-radius:inherit; box-shadow:0 1px 0 #f4f8ff42 inset,0 0 0 1px #d5e4f118 inset; pointer-events:none; }
+.portrait-gallery .about-portrait img { transition:transform 1s var(--ease),filter .65s var(--ease); }
+.portrait-gallery[data-focused='true'] .about-portrait:not([data-active='true']) .portrait-surface { filter:brightness(.82) saturate(.8); transform:scale(.985); }
+.portrait-gallery .about-portrait[data-active='true'] { z-index:5; }
+.portrait-gallery .about-portrait[data-active='true'] .portrait-surface {
+  transform:perspective(750px) translateY(-10px) rotateX(var(--portrait-rx)) rotateY(var(--portrait-ry)) scale(1.045);
+  box-shadow:0 0 0 1px #dbe9fa66,0 24px 44px -15px #000b,0 0 28px -16px #94bfff88;
+}
+.portrait-gallery .about-portrait[data-active='true'] .portrait-surface::before { opacity:1; }
+.portrait-gallery .about-portrait[data-active='true'] img { transform:translate3d(0,var(--portrait-y,0px),0) scale(1.12); }
+.portrait-caption { position:absolute; left:0; right:0; bottom:0; z-index:2; display:flex; align-items:center; justify-content:space-between; padding:25px 12px 11px; color:#f2f5f8; font-size:11px; font-weight:500; letter-spacing:.14em; background:linear-gradient(transparent,#080d1880); opacity:0; transform:translateY(5px); transition:opacity .4s,transform .5s var(--ease); }
+.portrait-caption>span { font-size:13px; opacity:.65; }
+.about-portrait[data-active='true'] .portrait-caption { opacity:1; transform:none; }
+.portrait-gallery .about-portrait:focus-visible { outline:2px solid #d6e7ff; outline-offset:6px; }
+@keyframes portrait-unfold { from { opacity:0; transform:translate3d(var(--portrait-entry-x),32px,-60px) rotateY(var(--portrait-entry-turn)) scale(.88); } to { opacity:1; transform:none; } }
+@media(max-width:700px) {
+  .portrait-gallery .about-portrait[data-active='true'] .portrait-surface { transform:translateY(-7px) scale(1.04); }
+  .portrait-caption { font-size:9px; padding:22px 8px 8px; }
+}
+.motion-paused .portrait-gallery .about-portrait,
+.motion-paused .portrait-gallery .portrait-surface,
+.motion-paused .portrait-gallery img { animation:none!important; transform:none!important; transition:none!important; }
+.motion-paused .portrait-gallery .portrait-surface::before,.motion-paused .portrait-gallery .portrait-caption { transition:none; }
+@media(prefers-reduced-motion:reduce) {
+  .portrait-gallery .about-portrait,.portrait-gallery .portrait-surface,.portrait-gallery img { animation:none!important; transform:none!important; transition:none!important; }
+  .portrait-gallery .portrait-surface::before,.portrait-gallery .portrait-caption { transition:none; transform:none; }
+}
