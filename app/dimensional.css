@@ -332,12 +332,13 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 
 /* Native horizontal browsing leaves vertical page scrolling untouched. */
 .loopit-work-reel { height:auto; scroll-margin-top:80px; }
-.loopit-work-reel .reel-stage { position:relative; top:0; height:clamp(680px,calc(100svh - 72px),900px); min-height:0; }
-.loopit-work-reel .reel-viewport { position:relative; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scroll-padding-inline:6vw; scrollbar-width:none; overscroll-behavior-x:contain; cursor:grab; }
+.loopit-work-reel .reel-stage { position:relative; top:0; max-width:1440px; margin-inline:auto; padding-inline:max(6vw,24px); height:clamp(680px,calc(100svh - 72px),900px); min-height:0; }
+.loopit-work-reel .reel-heading,.loopit-work-reel .reel-progress { margin-inline:0; }
+.loopit-work-reel .reel-viewport { position:relative; overflow-x:auto; overflow-y:hidden; scroll-snap-type:x mandatory; scroll-padding-inline:0; scrollbar-width:none; overscroll-behavior-x:contain; cursor:grab; }
 .loopit-work-reel .reel-viewport::-webkit-scrollbar { display:none; }
 .loopit-work-reel .reel-viewport:focus-visible { outline:1px solid #c5d4e780; outline-offset:-3px; }
-.loopit-work-reel .reel-track { width:max-content; height:100%; flex-direction:row; gap:4vw; padding:0 6vw; transform:none!important; will-change:auto; }
-.loopit-work-reel .reel-panel { width:88vw; flex:0 0 88vw; min-height:0; scroll-snap-align:start; }
+.loopit-work-reel .reel-track { width:100%; height:100%; flex-direction:row; gap:0; padding:0; transform:none!important; will-change:auto; }
+.loopit-work-reel .reel-panel { width:100%; flex:0 0 100%; min-width:0; min-height:0; scroll-snap-align:start; }
 .loopit-work-reel .reel-controls { display:flex; }
 .loopit-work-reel .reel-progress { display:flex; }
 .reel-viewport.is-dragging { scroll-snap-type:none; cursor:grabbing; user-select:none; }
