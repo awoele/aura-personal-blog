@@ -22,6 +22,7 @@ const detailViews = [
 export default function ProjectReel({ paused }: { paused: boolean }) {
   const viewport = useRef<HTMLDivElement>(null);
   const section = useRef<HTMLElement>(null);
+  const navigation = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
   const drag = useRef({ x:0, y:0, left:0, id:-1, moved:false });
   const select = (next: number) => {
@@ -55,6 +56,21 @@ export default function ProjectReel({ paused }: { paused: boolean }) {
     update();
     return () => { cancelAnimationFrame(frame); resize.disconnect(); el.removeEventListener('scroll', schedule); };
   }, []);
+  useEffect(() => {
+    const nav = navigation.current;
+    if (!nav) return;
+    const update = () => {
+      const button = nav.querySelectorAll('button')[index];
+      if (!button) return;
+      nav.style.setProperty('--nav-x', `${button.offsetLeft}px`);
+      nav.style.setProperty('--nav-width', `${button.offsetWidth}px`);
+      nav.scrollTo({ left:button.offsetLeft - (nav.clientWidth-button.offsetWidth)/2, behavior:paused || matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    };
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(nav);
+    return () => observer.disconnect();
+  }, [index,paused]);
   const startDrag = (event: PointerEvent<HTMLDivElement>) => {
     drag.current.moved = false;
     if (event.pointerType !== 'mouse' || event.button !== 0) return;
@@ -86,7 +102,7 @@ export default function ProjectReel({ paused }: { paused: boolean }) {
   };
   return <section id="moments" className="project-reel loopit-work-reel" ref={section} aria-label="Loopit 项目与完整工作展示">
     <div className="reel-stage">
-      <div className="reel-heading"><div><div className="eyebrow">THE MANY SIDES OF LOOPIT</div><h2>好想法，<span>不止一面。</span></h2></div><div className="reel-controls" aria-label="选择 Loopit 工作展示">{moments.map((moment,i)=><button key={moment.label} onClick={()=>select(i)} aria-pressed={index===i}>{moment.label}</button>)}</div></div>
+      <div className="reel-heading"><div><div className="eyebrow">THE MANY SIDES OF LOOPIT</div><h2>好想法，<span>不止一面。</span></h2></div><div className="reel-controls" ref={navigation} aria-label="选择 Loopit 工作展示">{moments.map((moment,i)=><button key={moment.label} onClick={()=>select(i)} aria-pressed={index===i}>{moment.label}</button>)}<span className="reel-nav-indicator" aria-hidden="true"/></div></div>
       <div className="reel-viewport" ref={viewport} tabIndex={0} aria-label="左右滑动浏览 Loopit 展示" onPointerDown={startDrag} onPointerMove={moveDrag} onPointerUp={endDrag} onPointerCancel={endDrag} onLostPointerCapture={endDrag} onDragStart={event=>event.preventDefault()} onClickCapture={event=>{ if(drag.current.moved){event.preventDefault();event.stopPropagation();drag.current.moved=false;} }} onKeyDown={event=>{ if(event.key==='ArrowLeft'||event.key==='ArrowRight'){event.preventDefault();select(index+(event.key==='ArrowRight'?1:-1));} }}><div className="reel-track">
         {moments.map((moment,i)=><article key={moment.label} className={`reel-panel loopit-work-panel ${moment.style}`}>
           <div className="reel-copy"><span className="work-index">LOOPIT / 0{i+1}</span><span className="eyebrow">{moment.eyebrow}</span><h3>{moment.title}</h3><p>{moment.description}</p><a className="work-visit" href={moment.url} target="_blank" rel="noreferrer">{i===2?'探索全部案例':'查看'+moment.label}<span><ArrowUpRight size={19}/></span></a></div>
