@@ -371,7 +371,14 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .about .education-grid strong { display:flex; align-items:baseline; flex-wrap:wrap; gap:8px; margin:8px 0 0; color:#edf0f5; font-size:42px; font-weight:550; line-height:1.15; letter-spacing:-.04em; font-variant-numeric:lining-nums tabular-nums; text-shadow:0 1px 14px #c8ddff0b; }
 .about .education-grid small { font-size:12px; line-height:1.7; font-weight:400; color:#94a1b2; letter-spacing:0; }
 .about .education-grid>div>span { font-size:12px; line-height:1.9; color:#8997aa; text-wrap:pretty; }
-@media(max-width:1000px) { .about-grid { grid-template-columns:1fr; gap:40px; }.about-copy { max-width:720px; } }
+@media(min-width:701px) and (max-width:1000px) {
+  .about-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:32px; }
+  .about-grid>div { min-width:0; }
+  .about-grid h2 { font-size:clamp(28px,3.7vw,37px); letter-spacing:-.045em; }
+  .about-copy>p { font-size:16px; line-height:1.85; }
+  .about-copy .skill-lines>div { grid-template-columns:1fr; gap:8px; }
+}
+@media(max-width:700px) { .about-grid { grid-template-columns:1fr; gap:40px; }.about-copy { max-width:720px; } }
 @media(max-width:700px) {
   .about .skill-lines>div { grid-template-columns:82px minmax(0,1fr); gap:14px; padding:20px 0; }
   .about .skill-lines span,.about .skill-lines p { font-size:13px; }
@@ -391,13 +398,13 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .experience-1 .experience-banner { background:#121820; display:grid; grid-template-columns:42% 58%; align-items:center; height:370px; padding-right:34px; }
 .experience-1 .experience-banner-shade { display:none; }
 .experience-1 .company-heading { position:relative; align-self:start; z-index:1; max-width:none; padding-right:20px; }
-.baidu-visual { position:relative; min-width:0; height:302px; perspective:1000px; }
+.baidu-visual { position:relative; min-width:0; height:302px; perspective:1000px; container-type:size; }
 .baidu-browser-preview { display:block; height:100%; min-height:0; transition:transform .9s var(--ease),box-shadow .9s var(--ease); }
-.baidu-browser-preview img { display:block; width:100%; height:100%; object-fit:cover; object-position:top; border-radius:inherit; }
-.baidu-visual .baidu-browser-preview { position:absolute; width:68%; height:76%; }
+.baidu-browser-preview img { position:absolute; inset:0; display:block; width:100%; height:100%; object-fit:contain; object-position:center; border-radius:inherit; }
+.baidu-visual .baidu-browser-preview { position:absolute; width:min(68%,121.6cqh); height:auto; aspect-ratio:16/10; }
 .baidu-shot-poem { top:0; left:0; z-index:1; transform:rotate(-3deg); }
 .baidu-shot-real { top:17%; right:0; z-index:2; transform:rotate(2deg); }
-.baidu-visual .baidu-shot-home { left:4%; bottom:0; width:46%; height:58%; z-index:3; transform:rotate(-2deg); }
+.baidu-visual .baidu-shot-home { left:4%; bottom:0; width:min(46%,92.8cqh); z-index:3; transform:rotate(-2deg); }
 @media(hover:hover) { .baidu-browser-preview:hover { z-index:4; transform:translateY(-5px); } }
 .baidu-browser-preview:focus-visible { z-index:4; transform:translateY(-5px); outline:2px solid #d3e1ed; outline-offset:3px; }
 .motion-paused .baidu-browser-preview { transform:none; transition:none; }
@@ -417,9 +424,9 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   .loopit-real-covers .case-glass:nth-child(2) { left:31.5%; top:6px; transform:translateZ(12px); }
   .loopit-real-covers .case-glass:nth-child(3) { left:61%; top:23px; transform:rotate(7deg); }
   .baidu-visual { order:1; width:calc(100% - 48px); height:auto; aspect-ratio:1.2; margin:8px 24px 24px; flex:none; }
-  .baidu-visual .baidu-browser-preview { width:78%; height:67%; }
+  .baidu-visual .baidu-browser-preview { width:78%; }
   .baidu-shot-real { top:24%; }
-  .baidu-visual .baidu-shot-home { width:57%; height:47%; }
+  .baidu-visual .baidu-shot-home { width:57%; }
 }
 
 /* A narrow satin rim separates the captures without adding a device shell. */
