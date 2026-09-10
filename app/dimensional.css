@@ -382,9 +382,15 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 @media(max-width:700px) {
   .about .skill-lines>div { grid-template-columns:82px minmax(0,1fr); gap:14px; padding:20px 0; }
   .about .skill-lines span,.about .skill-lines p { font-size:13px; }
-  .about .education-grid { grid-template-columns:1fr; margin-top:54px; padding-top:30px; row-gap:14px; }
-  .about .education-grid>div { padding-bottom:32px; border-bottom:1px solid #d5deeb14; margin-bottom:16px; }
-  .about .education-grid h3 { font-size:25px; }.about .education-grid strong { font-size:38px; }
+  .about .education-grid { grid-template-columns:1fr; margin-top:40px; padding-top:24px; row-gap:22px; }
+  .about .education-grid>div { grid-row:auto; grid-template-columns:minmax(0,1fr) minmax(110px,.8fr); grid-template-rows:auto auto auto auto; gap:8px 16px; padding-bottom:22px; border-bottom:1px solid #d5deeb14; margin:0; align-items:start; }
+  .about .education-grid>div:last-child { padding-bottom:0; border-bottom:0; }
+  .about .education-grid .eyebrow { grid-column:1/-1; margin-bottom:5px; font-size:10px; }
+  .about .education-grid h3 { grid-column:1; grid-row:2; font-size:20px; line-height:1.4; text-wrap:pretty; }
+  .about .education-grid p { grid-column:1; grid-row:3; font-size:12px; line-height:1.75; }
+  .about .education-grid strong { grid-column:2; grid-row:2/4; display:flex; flex-direction:column; align-items:flex-end; gap:6px; margin:0; font-size:32px; text-align:right; }
+  .about .education-grid small { font-size:10px; line-height:1.6; }
+  .about .education-grid>div>span { grid-column:1/-1; grid-row:4; margin-top:3px; font-size:11px; line-height:1.75; }
 }
 
 /* The project reader follows the same editorial rhythm as the about section. */
