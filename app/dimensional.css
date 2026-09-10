@@ -25,8 +25,8 @@
 .project-card .post-foot { pointer-events:none; }.project-card .project-shade { display:none; }
 .travel-project { background:radial-gradient(ellipse at 65% 85%,#806542,#211d1a 75%); }
 .photo-project { background:linear-gradient(135deg,#333642,#131722); }
-.ielts-project { background:linear-gradient(130deg,#272c36,#1b2029); color:#e9ecf3; }
-.radar-project { background:linear-gradient(130deg,#263242,#1a232f); color:#e9ecf3; }
+.ielts-project { background:radial-gradient(ellipse at 65% 85%,#665064 0%,#362936 52%,#221d25 85%); color:#e9ecf3; }
+.radar-project { background:radial-gradient(ellipse at 65% 85%,#426d60 0%,#233b34 52%,#172721 85%); color:#e9ecf3; }
 .ielts-project .post-topline,.radar-project .post-topline,.ielts-project .project-name,.radar-project .project-name { color:#b5bfce; }
 .ielts-project h3,.radar-project h3 { text-shadow:none; }
 .project-art { position:relative; min-height:0; height:auto; aspect-ratio:16 / 10; width:100%; display:flex; align-items:center; justify-content:center; }
