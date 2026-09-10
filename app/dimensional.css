@@ -404,19 +404,19 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   .baidu-visual .baidu-shot-home { width:57%; height:47%; }
 }
 
-/* Reuse the photography site's screenshot finish across both layered galleries. */
-.photo-project .screen-surface,
+/* A narrow satin rim separates the captures without adding a device shell. */
 .work-screens .work-window,
 .work-screens:hover .work-window-main,
 .baidu-browser-preview {
-  padding:0; border:1px solid #ffffff24; border-radius:10px;
-  overflow:hidden; background:#15130f;
-  box-shadow:0 1px 0 #ffffff20 inset,0 18px 32px -18px #0009;
+  padding:0; border:1.5px solid transparent; border-radius:10px;
+  overflow:hidden;
+  background:linear-gradient(#141820,#141820) padding-box,
+    linear-gradient(135deg,#c2cbd5 0%,#8994a2 24%,#434c58 54%,#75818e 82%,#b3bdc9 100%) border-box;
+  box-shadow:0 2px 5px #0003,0 20px 36px -20px #000a;
 }
-.photo-project .screen-surface::after,
 .work-screens .work-window::after,
 .baidu-browser-preview::after {
   content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
-  box-shadow:0 0 0 1px #ffffff12 inset;
-  background:linear-gradient(145deg,#ffffff0d,transparent 40%);
+  box-shadow:0 0 0 .5px #10151b99 inset;
+  background:none;
 }
