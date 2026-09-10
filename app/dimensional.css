@@ -539,13 +539,13 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .community-notes-expanded .community-note { aspect-ratio:3/4; }
 .community-notes-expanded .community-note>span { padding:13px; }
 .community-notes-expanded .community-note strong { font-size:13px; }
-.community-notes-expanded .community-note:first-child { grid-column:span 2; aspect-ratio:auto; }
-.community-notes-expanded .community-note:first-child>img { position:absolute; inset:0; object-position:50% 28%; }
+.community-notes-expanded .community-note:first-child,.community-notes-expanded .community-note:nth-child(4) { grid-column:span 2; aspect-ratio:auto; }
+.community-notes-expanded .community-note:first-child>img,.community-notes-expanded .community-note:nth-child(4)>img { position:absolute; inset:0; object-position:50% 28%; }
 .community-notes-expanded .community-note:first-child strong { font-size:19px; }
 .community-notes-expanded .community-note:first-child>span { padding:20px; }
 .community-notes-date { grid-column:1/-1; margin:0; color:#7d899a; font-size:10px; line-height:1.6; }
 @media(max-width:1000px) { .community-notes-expanded { grid-template-columns:repeat(2,minmax(0,1fr)); } }
-@media(max-width:1000px) { .community-notes-expanded .community-note:first-child { aspect-ratio:3/2; } }
+@media(max-width:1000px) { .community-notes-expanded .community-note:first-child,.community-notes-expanded .community-note:nth-child(4) { grid-column:auto; aspect-ratio:3/4; }.community-notes-expanded .community-note:first-child strong { font-size:13px; }.community-notes-expanded .community-note:first-child>span { padding:13px; } }
 @media(max-width:1000px) { .community-story { grid-template-columns:1fr 1fr; gap:30px; }.community-note>span { padding:14px; } }
 @media(max-width:700px) { .community-story { grid-template-columns:1fr; gap:30px; margin-top:44px; padding-top:40px; }.community-copy h3 { font-size:36px; }.community-copy>p { max-width:none; }.community-audience { margin-top:23px; }.community-account { max-width:none; }.community-notes { gap:12px; }.community-note { aspect-ratio:3/4.5; }.community-note strong { font-size:13px; }.community-note small { font-size:7px; } }
 .motion-paused .community-note>img { transition:none; transform:none; }

@@ -6,7 +6,6 @@ const notes: { image: string; title: string; category: string; url?: string; lik
   { image: 'xhs-pretty.webp', title: '好漂亮的小猫', category: 'PORTRAIT / 小猫肖像', url: 'https://xhslink.cn/o/CMAxF66d8X', likes: '3,464' },
   { image: 'xhs-trill.webp', title: '点击听小宝弹舌', category: 'VOICE / 小猫声音', url: 'https://xhslink.cn/o/9zt9DvFBEIb', likes: '2,511' },
   { image: 'xhs-adoption.webp', title: '那些年，被我们送出去的小猫们。', category: 'ADOPTION / 领养记录' },
-  { image: 'xhs-cat.webp', title: '等待一个家，也记录每一天。', category: 'DAILY / 小猫日常' },
 ];
 
 export default function CommunityStory() {
