@@ -306,6 +306,17 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .work-screens .work-window>img { border-radius:inherit; }
 .work-screens .work-window::before { content:none; }
 
+/* Fit the entire layered composition, including tilt and hover travel. */
+.loopit-work-panel .work-art { min-width:0; }
+.work-art .work-screens {
+  flex:none;
+  width:min(calc(100cqw - 32px),calc((100cqh - 48px) * 1.8));
+  height:auto;
+  aspect-ratio:9/5;
+}
+.work-screens .work-window-main { top:3%; bottom:auto; left:0; width:64%; }
+.work-screens .work-window-detail { top:8%; right:0; width:78%; }
+
 /* Native horizontal browsing leaves vertical page scrolling untouched. */
 .loopit-work-reel { height:auto; scroll-margin-top:80px; }
 .loopit-work-reel .reel-stage { position:relative; top:0; height:clamp(680px,calc(100svh - 72px),900px); min-height:0; }
@@ -535,12 +546,12 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .community-note:focus-visible,.community-account:focus-visible { outline:2px solid #c2d7f1; outline-offset:5px; }
 .community-note-likes { margin-top:10px; font-size:11px; font-style:normal; color:#d6dde7; font-variant-numeric:tabular-nums; }
 .community-story:has(.community-notes-expanded) { align-items:start; }
-.community-notes-expanded { grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.community-notes-expanded { grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
 .community-notes-expanded .community-note { aspect-ratio:3/4; }
 .community-notes-expanded .community-note>span { padding:13px; }
 .community-notes-expanded .community-note strong { font-size:13px; }
-.community-notes-expanded .community-note:first-child,.community-notes-expanded .community-note:nth-child(4) { grid-column:span 2; aspect-ratio:auto; }
-.community-notes-expanded .community-note:first-child>img,.community-notes-expanded .community-note:nth-child(4)>img { position:absolute; inset:0; object-position:50% 28%; }
+.community-notes-expanded .community-note>img { object-fit:contain; }
+.community-notes-expanded .community-note:first-child,.community-notes-expanded .community-note:nth-child(4) { grid-column:auto; aspect-ratio:3/4; }
 .community-notes-expanded .community-note:first-child strong { font-size:19px; }
 .community-notes-expanded .community-note:first-child>span { padding:20px; }
 .community-notes-date { grid-column:1/-1; margin:0; color:#7d899a; font-size:10px; line-height:1.6; }
