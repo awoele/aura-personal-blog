@@ -405,18 +405,37 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 }
 
 /* A narrow satin rim separates the captures without adding a device shell. */
+:root {
+  --capture-rim:linear-gradient(135deg,#c2cbd5 0%,#8994a2 24%,#434c58 54%,#75818e 82%,#b3bdc9 100%);
+  --capture-shadow:0 2px 5px #0003,0 20px 36px -20px #000a;
+}
 .work-screens .work-window,
 .work-screens:hover .work-window-main,
-.baidu-browser-preview {
+.baidu-browser-preview,
+.loopit-real-covers .case-glass,
+.project-card .screen-surface,
+.reading-image-frame:not(.travel-project) {
   padding:0; border:1.5px solid transparent; border-radius:10px;
   overflow:hidden;
-  background:linear-gradient(#141820,#141820) padding-box,
-    linear-gradient(135deg,#c2cbd5 0%,#8994a2 24%,#434c58 54%,#75818e 82%,#b3bdc9 100%) border-box;
-  box-shadow:0 2px 5px #0003,0 20px 36px -20px #000a;
+  background:linear-gradient(#141820,#141820) padding-box,var(--capture-rim) border-box;
+  box-shadow:var(--capture-shadow);
 }
 .work-screens .work-window::after,
-.baidu-browser-preview::after {
+.baidu-browser-preview::after,
+.loopit-real-covers .case-glass::after,
+.project-card .screen-surface::after {
   content:''; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
   box-shadow:0 0 0 .5px #10151b99 inset;
   background:none;
+}
+.loopit-real-covers .case-glass img { border-radius:8px; }
+.project-card .screenshot-crop { background:#141820; }
+.ielts-project .screen-surface img,.radar-project .screen-surface img,
+.ielts-project:hover .screen-surface img,.radar-project:hover .screen-surface img,
+.reading-image-frame.ielts-project img,.reading-image-frame.radar-project img {
+  filter:brightness(.9) saturate(.94);
+}
+.iphone-17-pro-max .device-frame,.iphone-17-pro-max:nth-child(2) .device-frame {
+  --edge:#929daa; background:var(--capture-rim);
+  box-shadow:0 0 0 .5px #b3bdc94d,0 0 0 1px #141820 inset,var(--capture-shadow);
 }
