@@ -337,6 +337,11 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .reel-arrows button:focus-visible { outline:2px solid #c5d4e7; outline-offset:3px; }
 @media(max-width:700px) {
   .loopit-work-reel .reel-stage { height:max(760px,calc(100svh - 64px)); padding-top:24px; }
+  .loopit-work-panel { padding-inline:8px; }
+  .loopit-work-panel .reel-copy { padding-inline:16px; }
+  .work-art .work-screens { width:min(calc(100cqw - 16px),calc((100cqh - 24px) * 1.1)); aspect-ratio:11/10; }
+  .work-screens .work-window-main { width:82%; top:3%; }
+  .work-screens .work-window-detail { width:94%; top:30%; }
   .loopit-work-reel .reel-controls { display:grid; }
   .loopit-work-reel .reel-progress { gap:12px; }
   .reel-arrows { gap:7px; }.reel-arrows button { width:32px; height:32px; }
