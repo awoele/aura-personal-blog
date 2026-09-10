@@ -15,10 +15,10 @@ export default function CommunityStory() {
       <h3 id="community-title">让善意，<br/><span>被更多人看见。</span></h3>
       <p>独立运营校园流浪动物救助账号，记录救助日常、发布领养信息，让每一个小生命的故事被看见。</p>
       <div className="community-audience"><strong>4,179</strong><div><span>小红书关注者</span><small>截至 2026.09.10</small></div></div>
-      <a className="community-account" href={accountUrl} target="_blank" rel="noreferrer"><img src="/images/xhs-avatar.webp" alt="" width="44" height="44" loading="lazy"/><span><strong>TJU在逃小流浪🐾</strong><small>查看小红书主页</small></span><ArrowUpRight size={20}/></a>
+      <a className="community-account" href={accountUrl} target="_blank" rel="noreferrer"><img src="./images/xhs-avatar.webp" alt="" width="44" height="44" loading="lazy"/><span><strong>TJU在逃小流浪🐾</strong><small>查看小红书主页</small></span><ArrowUpRight size={20}/></a>
     </div>
     <div className={`community-notes${notes.length > 2 ? ' community-notes-expanded' : ''}`} aria-label="账号真实笔记封面">
-      {notes.map(note => <a key={note.image} className="community-note" href={note.url || accountUrl} target="_blank" rel="noreferrer" aria-label={`${note.url ? '查看笔记' : '前往小红书主页'}：${note.title}`}><img src={`/images/${note.image}`} alt={`笔记封面：${note.title}`} width="1080" height="1440" loading="lazy" decoding="async"/><span><small>{note.category}</small><strong>{note.title}</strong>{note.likes !== undefined && <em className="community-note-likes">♡ {note.likes} 赞</em>}<ArrowUpRight size={19}/></span></a>)}
+      {notes.map(note => <a key={note.image} className="community-note" href={note.url || accountUrl} target="_blank" rel="noreferrer" aria-label={`${note.url ? '查看笔记' : '前往小红书主页'}：${note.title}`}><img src={`./images/${note.image}`} alt={`笔记封面：${note.title}`} width="1080" height="1440" loading="lazy" decoding="async"/><span><small>{note.category}</small><strong>{note.title}</strong>{note.likes !== undefined && <em className="community-note-likes">♡ {note.likes} 赞</em>}<ArrowUpRight size={19}/></span></a>)}
       <p className="community-notes-date">点赞数据来自笔记公开页面 · 2026.09.10</p>
     </div>
   </section>;

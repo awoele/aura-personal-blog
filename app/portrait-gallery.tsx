@@ -5,9 +5,9 @@ import { useEffect, useRef, useState, type RefObject, type PointerEvent } from '
 import { ArrowLeft, ArrowRight, Pause, Play } from 'lucide-react';
 
 const portraits = [
-  { src:'/images/about-portrait-formal.webp', alt:'杨玄一的正装肖像', label:'工作', width:900, height:1200 },
-  { src:'/images/about-portrait-camera.webp', alt:'杨玄一携相机出行的生活照', label:'摄影', width:900, height:1200 },
-  { src:'/images/about-portrait.webp', alt:'杨玄一在湖边的旅行照片', label:'旅行', width:1100, height:1467 },
+  { src:'./images/about-portrait-formal.webp', alt:'杨玄一的正装肖像', label:'工作', width:900, height:1200 },
+  { src:'./images/about-portrait-camera.webp', alt:'杨玄一携相机出行的生活照', label:'摄影', width:900, height:1200 },
+  { src:'./images/about-portrait.webp', alt:'杨玄一在湖边的旅行照片', label:'旅行', width:1100, height:1467 },
 ];
 
 export default function PortraitGallery({ galleryRef, paused }: { galleryRef:RefObject<HTMLDivElement | null>; paused:boolean }) {

@@ -16,5 +16,5 @@ export default function HeroScene({ paused }: { paused: boolean }) {
     event.currentTarget.style.setProperty('--metal-x', `${-y * 16}deg`);
     event.currentTarget.style.setProperty('--metal-y', `${x * 16}deg`);
   };
-  return <div className="hero-scene original-metal" ref={host} onPointerMove={follow} onPointerLeave={reset} aria-hidden="true"><div className="metal-parallax"><img src="/images/hero.webp" alt="" width="1672" height="941" fetchPriority="high"/></div></div>;
+  return <div className="hero-scene original-metal" ref={host} onPointerMove={follow} onPointerLeave={reset} aria-hidden="true"><div className="metal-parallax"><img src="./images/hero.webp" alt="" width="1672" height="941" fetchPriority="high"/></div></div>;
 }
