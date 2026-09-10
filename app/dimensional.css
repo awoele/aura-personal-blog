@@ -392,9 +392,33 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .reading-body p { margin:0; color:#b8c3d2; font-size:16px; font-weight:400; line-height:2; letter-spacing:.012em; text-align:justify; text-align-last:start; text-justify:inter-ideograph; overflow-wrap:break-word; }
 .reading-body p:last-child { padding-top:24px; border-top:1px solid #d7e2f012; color:#e0e6ee; font-weight:500; }
 .reading-end { margin:30px 0 22px; color:#8290a3; font-size:12px; line-height:1.9; letter-spacing:.015em; }
+.experience-1 .experience-banner { background:#121820; display:grid; grid-template-columns:42% 58%; align-items:center; height:370px; padding-right:34px; }
+.experience-1 .experience-banner-shade { display:none; }
+.experience-1 .company-heading { position:relative; align-self:start; z-index:1; max-width:none; padding-right:20px; }
+.baidu-visual { min-width:0; height:302px; display:grid; align-items:center; }
+.baidu-browser-preview { display:block; height:100%; min-height:0; padding:3px; border:1px solid #c7d4e34d; border-radius:15px; background:linear-gradient(135deg,#68747f,#252c35 28%,#151b22 74%,#68747f); box-shadow:0 2px 0 #ffffff17 inset,0 24px 42px -20px #000c; overflow:hidden; transition:transform .9s var(--ease),box-shadow .9s var(--ease); }
+.baidu-browser-bar { display:flex; align-items:center; gap:18px; height:25px; padding:0 10px; color:#909dab; background:#202730; font-size:9px; letter-spacing:.02em; border-radius:11px 11px 0 0; }
+.baidu-browser-bar>span:first-child { font-size:7px; color:#72808e; letter-spacing:2px; }
+.baidu-browser-preview img { display:block; width:100%; height:calc(100% - 25px); object-fit:cover; object-position:top; border-radius:0 0 11px 11px; }
+@media(hover:hover) { .baidu-browser-preview:hover { transform:translateY(-5px); box-shadow:0 2px 0 #ffffff25 inset,0 30px 50px -20px #000e; } }
+.motion-paused .baidu-browser-preview { transform:none; transition:none; }
+@media(prefers-reduced-motion:reduce) { .baidu-browser-preview { transform:none!important; transition:none; } }
 @media(max-width:700px) {
   .reading-title { margin-top:24px; font-size:30px; }
   .reading-description { margin:16px 0 24px; font-size:12px; }
   .reading-body { gap:22px; padding-top:24px; }
   .reading-body p { font-size:15px; line-height:1.95; letter-spacing:0; }
+  .experience-0 .experience-banner,.experience-1 .experience-banner { display:flex; flex-direction:column; height:auto; min-height:0; padding:0; }
+  .experience-0 .company-heading,.experience-1 .company-heading { order:0; width:100%; max-width:none; padding:28px 28px 20px; }
+  .experience-0 .experience-banner-shade { display:none; }
+  .loopit-real-covers { order:1; position:relative; inset:auto; width:calc(100% - 48px); height:auto; aspect-ratio:1.2; margin:8px 24px 24px; opacity:1; flex:none; }
+  .loopit-real-covers .case-glass { width:37%; border-radius:10px; }
+  .loopit-real-covers .case-glass img,.loopit-real-covers .case-glass:after { border-radius:9px; }
+  .loopit-real-covers .case-glass:nth-child(1) { left:2%; top:23px; transform:rotate(-7deg); }
+  .loopit-real-covers .case-glass:nth-child(2) { left:31.5%; top:6px; transform:translateZ(12px); }
+  .loopit-real-covers .case-glass:nth-child(3) { left:61%; top:23px; transform:rotate(7deg); }
+  .baidu-visual { order:1; width:calc(100% - 48px); height:auto; aspect-ratio:1.2; margin:8px 24px 24px; flex:none; }
+  .baidu-browser-preview { width:100%; height:auto; border-radius:11px; }
+  .baidu-browser-bar { border-radius:7px 7px 0 0; height:22px; }
+  .baidu-browser-preview img { height:auto; aspect-ratio:16/10; border-radius:0 0 7px 7px; }
 }
