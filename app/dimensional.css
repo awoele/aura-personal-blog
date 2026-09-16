@@ -35,11 +35,11 @@
 .product-phone-pair .device-position:last-child { transform:translateY(-5px) rotate(4deg); }
 .project-card:hover .product-phone-pair .device-position:first-child { transform:translate(-8px,-3px) rotate(-7deg) rotateY(6deg); }
 .project-card:hover .product-phone-pair .device-position:last-child { transform:translate(8px,-8px) rotate(7deg) rotateY(-6deg); }
-.browser-preview { position:relative; width:100%; height:100%; display:flex; align-items:center; border:0; border-radius:0; background:transparent; overflow:hidden; box-shadow:none; transform:none; transition:transform .9s var(--ease); }
+.browser-preview { position:relative; width:100%; height:100%; display:flex; align-items:center; border:0; border-radius:0; background:transparent; overflow:hidden; box-shadow:none; transform:none; transition:box-shadow .7s var(--ease); }
 .browser-preview .project-cover { position:relative; display:block; width:100%; height:100%; min-height:0; object-fit:contain; z-index:0; }
 .browser-preview-bar { display:flex; align-items:center; gap:5px; height:20px; padding:0 9px; color:#79808e; background:#e6e9ef; }
 .browser-preview-bar i { width:4px; height:4px; border-radius:50%; background:#b4bbc9; }.browser-preview-bar span { margin-left:10px; font-size:7px; }
-.project-card:hover .browser-preview { transform:translateY(-4px); }
+.project-card:hover .browser-preview { transform:none; }
 .project-card:hover .browser-preview .project-cover { transform:none; }
 .browser-preview,.reel-browser { container-type:size; justify-content:center; overflow:visible; }
 .screen-surface { --screen-radius:10px; position:relative; flex-shrink:0; width:min(100cqw,calc(100cqh * 1.6)); max-width:100%; aspect-ratio:16 / 10; border:1px solid #ffffff24; border-radius:var(--screen-radius); overflow:hidden; background:#bec2c9; box-shadow:0 1px 0 #ffffff20 inset,0 18px 32px -18px #0009; }
@@ -156,7 +156,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','PingFang S
 .device-key { position:absolute; width:2px; background:linear-gradient(#bbb9b3,#393c40,#9d9c98); border-radius:3px; }
 .device-key-left { left:-2px; top:22%; height:13%; }.device-key-right { right:-2px; top:27%; height:9%; }
 @keyframes device-breathe { 0%,100% { translate:0 3px; } 50% { translate:0 -5px; } }
-.project-card .browser-preview { animation:device-breathe 7s ease-in-out infinite; }
+.project-card .browser-preview { animation:none; }
 .photo-project .browser-preview { animation-delay:-1.2s; }
 .ielts-project .browser-preview { animation-delay:-3.5s; }
 .radar-project .browser-preview { animation-delay:-5.2s; }
@@ -488,19 +488,6 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   filter:brightness(.9) saturate(.94);
 }
 
-/* Full landscape captures sit inside a paired iPhone chassis, so no project image is cropped into a portrait frame. */
-.iphone-duo-position { position:relative; width:100%; height:100%; aspect-ratio:16 / 10; display:block; }
-.iphone-duo-frame { position:relative; width:100%; height:100%; padding:clamp(5px,.7vw,10px); border-radius:clamp(16px,2vw,28px); background:linear-gradient(112deg,#c8c8c3 0%,#55585c 13%,#edebe3 43%,#5e6063 67%,#bfc0bb 100%); box-shadow:0 0 0 1px #111317,0 2px 1px #ffffff85 inset,10px 22px 32px -17px #000c; }
-.iphone-duo-screen { position:relative; width:100%; height:100%; overflow:hidden; border-radius:clamp(11px,1.4vw,19px); background:#131820; box-shadow:0 0 0 1px #0008 inset; }
-.iphone-duo-screen img { display:block; width:100%; height:100%; object-fit:contain; }
-.duo-island { position:absolute; top:clamp(10px,2.1vw,23px); width:clamp(28px,5.7vw,68px); height:clamp(8px,1.25vw,15px); border-radius:999px; background:#060709; box-shadow:0 1px 1px #ffffff20 inset,0 0 0 1px #000; z-index:2; }
-.duo-island i { position:absolute; right:14%; top:50%; width:17%; aspect-ratio:1; border-radius:50%; transform:translateY(-50%); background:#172844; box-shadow:0 0 0 1px #283750 inset; }
-.duo-island-left { left:22%; }.duo-island-right { right:22%; }
-.duo-seam { position:absolute; inset:clamp(7px,1vw,13px) auto; left:50%; width:1px; transform:translateX(-.5px); background:linear-gradient(#ffffff55,#1c202766 13%,#1c202766 87%,#ffffff55); box-shadow:1px 0 #ffffff20; z-index:2; pointer-events:none; }
-.duo-side-key { position:absolute; width:clamp(2px,.4vw,5px); height:20%; top:40%; background:#737579; box-shadow:0 0 0 1px #282a2e; }
-.duo-side-key-left { left:calc(clamp(2px,.4vw,5px) * -1); border-radius:3px 0 0 3px; }.duo-side-key-right { right:calc(clamp(2px,.4vw,5px) * -1); border-radius:0 3px 3px 0; }
-.reading-image-frame .iphone-duo-position { height:100%; width:100%; }
-@media(max-width:700px) { .iphone-duo-position { width:100%; }.duo-island-left { left:20%; }.duo-island-right { right:20%; } }
 /* One continuous navigation line, with no wrapped segmented control. */
 .loopit-work-reel .reel-heading { align-items:stretch; flex-direction:column; gap:22px; margin-bottom:26px; }
 .loopit-work-reel .reel-controls {
