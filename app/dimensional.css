@@ -293,7 +293,6 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .work-window-detail>img { filter:brightness(.9) saturate(.9); }
 .work-screens:hover .work-window-detail { transform:translate(5px,-8px) rotateY(-2deg); }
 .work-screens:hover .work-window-main { transform:translate(-5px,5px) rotate(-1deg); box-shadow:0 24px 55px -15px #000e,0 0 0 1px #ffffff2b; }
-@media(hover:hover) { .work-screens .work-window:hover { z-index:5; } }
 .motion-paused .work-screens .work-window { transform:none; }
 @media(min-width:701px) and (max-width:1150px) {
   .loopit-work-reel .reel-heading { align-items:flex-start; flex-direction:column; gap:18px; }
