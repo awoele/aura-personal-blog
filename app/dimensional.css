@@ -436,8 +436,8 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .baidu-shot-poem { top:0; left:0; z-index:1; transform:rotate(-3deg); }
 .baidu-shot-real { top:17%; right:0; z-index:2; transform:rotate(2deg); }
 .baidu-visual .baidu-shot-home { left:4%; bottom:0; width:min(46%,92.8cqh); z-index:3; transform:rotate(-2deg); }
-@media(hover:hover) { .baidu-browser-preview:hover { z-index:4; transform:translateY(-5px); } }
-.baidu-browser-preview:focus-visible { z-index:4; transform:translateY(-5px); outline:2px solid #d3e1ed; outline-offset:3px; }
+@media(hover:hover) { .baidu-browser-preview:hover { transform:translateY(-5px); } }
+.baidu-browser-preview:focus-visible { transform:translateY(-5px); outline:2px solid #d3e1ed; outline-offset:3px; }
 .motion-paused .baidu-browser-preview { transform:none; transition:none; }
 @media(prefers-reduced-motion:reduce) { .baidu-browser-preview { transform:none!important; transition:none; } }
 @media(max-width:700px) {
