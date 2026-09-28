@@ -78,7 +78,7 @@ export const experience = [
   },
   {
     company: '百度', fullName: '汉语垂类搜索', role: '产品经理实习生', date: '2023.02 — 2023.06',
-    headline: '从内容生产，\n到质量与展示。',
+    headline: '从内容生产，到质量与展示。',
     summary: '围绕 Query 供给、AIGC 生产、内容审核、实验监控与前端展示，推进 B / C 端产品落地。',
     metrics: [['13 → 5', '工作日 · 内容生产周期'], ['73% → 95%', 'Query 过滤准确率'], ['8 → 4', '关键人工节点']],
     points: [

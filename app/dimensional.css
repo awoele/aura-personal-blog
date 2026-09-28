@@ -661,3 +661,5 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   .experience-metrics span,.company-fullname,.result-context { text-wrap:wrap; white-space:normal; }
   .community-note strong { text-wrap:balance; }
 }
+
+.site .experience-1 .company-heading>p { white-space:nowrap; font-size:clamp(17px,4.5vw,26px); letter-spacing:-.035em; }
