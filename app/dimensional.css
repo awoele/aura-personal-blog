@@ -631,38 +631,33 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   .portrait-deck-surface img { transform:none!important; }
 }
 
-/* Keep the desktop editorial breaks; let phone copy use its available width. */
+/* Phone typography: preserve title phrases, flow body text through full columns. */
 @media(max-width:700px) {
-  .site :is(h1,h2,h3,p),.reading-title,.reading-body p {
-    white-space:normal!important;
-    text-wrap:wrap!important;
+  .site p,.site p :is(span,strong,em),.reading-body p {
+    white-space:normal; text-wrap:wrap; word-break:normal;
   }
   .site .section-heading>p br { display:none; }
-}
-@media(max-width:700px) {
-  .section-heading h2.selected-work-title { font-size:clamp(24px,7.8vw,35px); }
-  .site h2.selected-work-title br { display:initial; }
-}
-
-/* Phone headings break by phrase; body copy occupies the full text column. */
-@media(max-width:700px) {
-  .site .section-heading h2 br,
-  .site .about-grid h2 br:last-of-type,
-  .site .closing-link br { display:initial; }
+  .site .section-heading>p,.site .hero-copy>p,.site .about-copy>p,
+  .site .community-copy>p,.site .reel-copy>p,.site .experience-summary,
+  .site .result-context { width:100%; max-width:none; }
+  .site .section-heading h2 { font-size:clamp(24px,7.8vw,35px); text-wrap:wrap; }
+  .site .project-card h3 { white-space:pre-line; text-wrap:wrap; font-size:clamp(22px,6.7vw,30px); }
+  .site .company-heading>p { white-space:pre-line; text-wrap:wrap; font-size:clamp(21px,6vw,26px); }
+  .site .section-heading h2 br,.site .reel-copy h3 br,
+  .site .community-copy h3 br,.site .closing-link br { display:initial; }
   .site .about-grid h2 br:first-of-type { display:none; }
-  .section-heading h2 { font-size:clamp(24px,7.8vw,35px); }
-  .closing-link { gap:12px; font-size:clamp(22px,6.6vw,29px); }
-  .closing-link>span:first-child { min-width:0; }
-  .site .section-heading>p,.site .hero-copy>p,
-  .site .about-copy>p,.site .community-copy>p,
-  .site .reel-copy>p { width:100%; max-width:none; text-wrap:wrap; word-break:normal; }
-  .about-copy>p strong { display:inline; white-space:normal; }
-  .community-note strong { text-wrap:balance; }
-}
-
-@media(max-width:700px) {
-  .site p,.site p :is(span,strong,em),.reading-body p { text-wrap:wrap!important; white-space:normal!important; }
-  .site :is(.experience-summary,.result-context,.post-subtitle) { max-width:none; }
+  .site .about-grid h2 br:last-of-type { display:initial; }
+  .site .about-grid h2 { text-wrap:wrap; }
   .site .loopit-work-panel .reel-copy h3 { font-size:clamp(24px,7.4vw,29px); }
-  .site .community-copy h3 { font-size:clamp(26px,8vw,36px); }
+  .site .community-copy h3 { font-size:clamp(26px,8vw,36px); text-wrap:wrap; }
+  .site .closing-link { gap:12px; font-size:clamp(22px,6.6vw,29px); }
+  .closing-link>span:first-child { min-width:0; }
+  .about-copy>p strong { display:inline; }
+  .project-result { flex-wrap:nowrap; }
+  .project-result>strong { flex-shrink:0; }
+  .project-result>span { flex:1; min-width:0; text-wrap:wrap; }
+  .experience-points>p { display:block; position:relative; padding-left:28px; }
+  .experience-points>p>span { position:absolute; left:0; top:0; }
+  .experience-metrics span,.company-fullname,.result-context { text-wrap:wrap; white-space:normal; }
+  .community-note strong { text-wrap:balance; }
 }
