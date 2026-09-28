@@ -637,9 +637,7 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
     white-space:normal!important;
     text-wrap:wrap!important;
   }
-  .site :is(h1,h2,h3) br,
-  .site .section-heading>p br,
-  .site .closing-link br { display:none; }
+  .site .section-heading>p br { display:none; }
 }
 @media(max-width:700px) {
   .section-heading h2.selected-work-title { font-size:clamp(24px,7.8vw,35px); }
@@ -660,4 +658,11 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   .site .reel-copy>p { width:100%; max-width:none; text-wrap:wrap; word-break:normal; }
   .about-copy>p strong { display:inline; white-space:normal; }
   .community-note strong { text-wrap:balance; }
+}
+
+@media(max-width:700px) {
+  .site p,.site p :is(span,strong,em),.reading-body p { text-wrap:wrap!important; white-space:normal!important; }
+  .site :is(.experience-summary,.result-context,.post-subtitle) { max-width:none; }
+  .site .loopit-work-panel .reel-copy h3 { font-size:clamp(24px,7.4vw,29px); }
+  .site .community-copy h3 { font-size:clamp(26px,8vw,36px); }
 }
