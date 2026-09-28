@@ -645,3 +645,19 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   .section-heading h2.selected-work-title { font-size:clamp(24px,7.8vw,35px); }
   .site h2.selected-work-title br { display:initial; }
 }
+
+/* Phone headings break by phrase; body copy occupies the full text column. */
+@media(max-width:700px) {
+  .site .section-heading h2 br,
+  .site .about-grid h2 br:last-of-type,
+  .site .closing-link br { display:initial; }
+  .site .about-grid h2 br:first-of-type { display:none; }
+  .section-heading h2 { font-size:clamp(24px,7.8vw,35px); }
+  .closing-link { gap:12px; font-size:clamp(22px,6.6vw,29px); }
+  .closing-link>span:first-child { min-width:0; }
+  .site .section-heading>p,.site .hero-copy>p,
+  .site .about-copy>p,.site .community-copy>p,
+  .site .reel-copy>p { width:100%; max-width:none; text-wrap:wrap; word-break:normal; }
+  .about-copy>p strong { display:inline; white-space:normal; }
+  .community-note strong { text-wrap:balance; }
+}
