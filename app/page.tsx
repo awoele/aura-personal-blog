@@ -95,7 +95,7 @@ export default function Home() {
     <main>
       <section ref={hero} className="hero dimensional-hero" aria-labelledby="hero-title"><div className="hero-stage">
         <div className="hero-ambient" aria-hidden="true"/>
-        <div className="hero-copy"><div className="eyebrow hero-eyebrow"><span/> YANG XUANYI · AI PRODUCT</div><h1 id="hero-title">让想法，成为产品。</h1><p>我是杨玄一。探索 AI 应用、Agent 工作流与有温度的数字体验。</p><a className="hero-link magnetic" href="#journal" onPointerMove={magnet} onPointerLeave={releaseMagnet}>探索我的作品 <ArrowUpRight size={18}/></a></div>
+        <div className="hero-copy"><div className="eyebrow hero-eyebrow"><span/> YANG XUANYI · AI PRODUCT</div><h1 id="hero-title">让想法，成为产品。</h1><p className="hero-intro"><span className="hero-intro-name">我是杨玄一。</span><span className="hero-intro-detail">探索 AI 应用、Agent 工作流与有温度的数字体验。</span></p><a className="hero-link magnetic" href="#journal" onPointerMove={magnet} onPointerLeave={releaseMagnet}>探索我的作品 <ArrowUpRight size={18}/></a></div>
         <HeroScene paused={paused}/>
         <div className="hero-bottom"><span>AI 产品 · 设计 · 独立开发</span><a href="#journal" className="scroll-cue">SCROLL TO DISCOVER <ArrowDown size={14}/></a><button className="motion-control" onClick={() => setPaused(!paused)} aria-label={paused ? '播放动效' : '暂停动效'} aria-pressed={paused}>{paused ? <Play size={14}/> : <Pause size={14}/>}</button></div>
       </div></section>
