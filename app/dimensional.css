@@ -667,3 +667,5 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 
 
 @media(max-width:700px) { .site .experience-0 .company-heading>p .experience-headline-line { white-space:nowrap; } }
+
+@media(max-width:700px) { .site .experience-0 .company-heading>p,.site .experience-1 .company-heading>p { font-size:clamp(17px,4.5vw,26px); line-height:1.45; letter-spacing:-.035em; } }
