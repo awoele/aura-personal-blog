@@ -663,3 +663,5 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 }
 
 .site .experience-1 .company-heading>p { white-space:nowrap; font-size:clamp(17px,4.5vw,26px); letter-spacing:-.035em; }
+
+.site .work-motivation .reel-copy h3 { white-space:nowrap; font-size:clamp(18px,5.7vw,28px); }
