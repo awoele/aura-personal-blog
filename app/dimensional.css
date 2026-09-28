@@ -641,3 +641,7 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
   .site .section-heading>p br,
   .site .closing-link br { display:none; }
 }
+@media(max-width:700px) {
+  .section-heading h2.selected-work-title { font-size:clamp(24px,7.8vw,35px); }
+  .site h2.selected-work-title br { display:initial; }
+}
