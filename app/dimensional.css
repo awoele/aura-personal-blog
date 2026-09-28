@@ -122,7 +122,7 @@ body { font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','PingFang S
 .about-directions>span { border-color:#ffffff20; color:#adb7c7; }
 .skill-lines { border-color:#ffffff18; }.skill-lines span { color:#d0d6df; }.skill-lines p { color:#9aa5b5; }
 .education-grid,.education-grid>div { border-color:#ffffff18; }.education-grid p,.education-grid small,.education-grid>div>span { color:#9ca7b7; }
-.closing-link { border-color:#ffffff18; }.closing-link small { color:#9ca7b7; }.closing-arrow { border-color:#ffffff28; }.closing-link:hover .closing-arrow { background:#d5e0f1; color:#151b25; }
+.closing-link { border-color:#ffffff18; color:#edf0f4; }.closing-title-accent { color:#858f9f; }.closing-link small { color:#9ca7b7; }.closing-arrow { border-color:#ffffff28; }.closing-link:hover .closing-arrow { background:#d5e0f1; color:#151b25; }
 .footer { border-color:#ffffff15; color:#8994a5; }.footer .wordmark { color:#d6deeb; }.footer>a:last-child { color:#adb8c9; }
 .reading-panel[data-slot='dialog-content'] { background:#1b1e26; color:#e1e6f0; border:1px solid #ffffff16; }
 .reading-title { color:#edf0f7; }.reading-description,.reading-end { color:#a5afbf; }.reading-body { border-color:#ffffff18; }.reading-body p { color:#c1c9d7; }
