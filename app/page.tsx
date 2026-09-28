@@ -100,7 +100,7 @@ export default function Home() {
         <div className="hero-bottom"><span>AI 产品 · 设计 · 独立开发</span><a href="#journal" className="scroll-cue">SCROLL TO DISCOVER <ArrowDown size={14}/></a><button className="motion-control" onClick={() => setPaused(!paused)} aria-label={paused ? '播放动效' : '暂停动效'} aria-pressed={paused}>{paused ? <Play size={14}/> : <Pause size={14}/>}</button></div>
       </div></section>
       <section id="journal" className="journal section-wrap">
-        <div className="section-heading" data-reveal><div><div className="eyebrow">SELECTED WORK / 2026</div><h2>从真实问题出发。<span>让创造，有迹可循。</span></h2></div><p>产品设计、独立开发与持续运营。四个项目，四种探索。</p></div>
+        <div className="section-heading" data-reveal><div><div className="eyebrow">SELECTED WORK / 2026</div><h2>从真实问题出发。<br/><span>让创造，有迹可循。</span></h2></div><p>产品设计、独立开发与持续运营。四个项目，四种探索。</p></div>
         <div className="post-grid project-grid">{posts.map((post, index) => <article className="post-shell" key={post.title} data-reveal style={{ transitionDelay: `${index % 2 * 90}ms` }}>
           <button className={`post-card project-card ${post.style}`} onPointerMove={tilt} onPointerLeave={event => { event.currentTarget.style.setProperty('--rx', '0deg'); event.currentTarget.style.setProperty('--ry', '0deg'); }} onClick={event => { readerTrigger.current = event.currentTarget; setSelected(index); setReaderOpen(true); }} aria-label={`阅读项目：${post.title}`}>
             <div className="post-topline"><span>{post.category}</span><ArrowUpRight size={21}/></div>
