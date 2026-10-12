@@ -18,7 +18,8 @@ export default function StudioShowcase() {
           style.textContent = '.export-frame .transport{display:flex!important;position:fixed;right:18px;top:18px;z-index:50;margin:0;padding:0}.export-frame .transport>*:not(#sound-toggle){display:none!important}#sound-toggle{background:#111827d9;color:#fff;border:1px solid #ffffff60;border-radius:24px;padding:10px 16px;font-size:12px;cursor:pointer}#sound-toggle:focus-visible{outline:3px solid #b9d3fa;outline-offset:3px}';
           doc.head.appendChild(style);
           doc.documentElement.dataset.fit = 'cover';
-          event.currentTarget.contentWindow?.dispatchEvent(new Event('resize'));
+          const frameWindow = event.currentTarget.contentWindow as (Window & { resize?: () => void }) | null;
+          frameWindow?.resize?.();
         } catch { /* A standalone local preview has a different origin. */ }
       }}
     />
