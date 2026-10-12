@@ -3,7 +3,7 @@ import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import { ArrowUpRight, ArrowRight, ArrowDown, Plus, X, Pause, Play } from 'lucide-react';
 import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogClose } from '@/components/ui/dialog';
 
-import { projects as posts, experience } from './content';
+import { projects as posts, experience, studioProject } from './content';
 import HeroScene from './hero-scene';
 import ProjectReel from './project-reel';
 import DeviceFrame from './device-frame';
@@ -11,8 +11,11 @@ import PortraitGallery from './portrait-gallery';
 import CommunityStory from './community-story';
 import StudioShowcase from './studio-showcase';
 
+const readerPosts = [...posts, studioProject];
+
 export default function Home() {
   const hero = useRef<HTMLElement>(null);
+  const studioCard = useRef<HTMLElement>(null);
   const portrait = useRef<HTMLDivElement>(null);
   const [selected, setSelected] = useState<number | null>(null);
   const [readerOpen, setReaderOpen] = useState(false);
@@ -63,6 +66,14 @@ export default function Home() {
     document.querySelectorAll('[data-reveal]').forEach(el => observer.observe(el));
     return () => { cancelAnimationFrame(frame); observer.disconnect(); window.removeEventListener('scroll', scroll); window.removeEventListener('resize', scroll); media.removeEventListener('change', scroll); };
   }, [paused]);
+  useEffect(() => {
+    const cards = Array.from(document.querySelectorAll<HTMLElement>('.project-grid .project-card'));
+    const syncHeight = () => studioCard.current?.style.setProperty('--studio-card-height', `${Math.max(...cards.map(card => card.getBoundingClientRect().height))}px`);
+    const observer = new ResizeObserver(syncHeight);
+    cards.forEach(card => observer.observe(card));
+    syncHeight();
+    return () => observer.disconnect();
+  }, []);
   const tilt = (event: PointerEvent<HTMLButtonElement>) => {
     if (paused || event.pointerType !== 'mouse' || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
@@ -112,17 +123,13 @@ export default function Home() {
           <div className="project-result"><strong>{post.metric}</strong><span>{post.metricLabel}</span></div><p className="result-context">{post.secondary}</p>
           <div className="post-meta"><span>{post.date}</span><a href={post.url} target="_blank" rel="noreferrer">访问作品 ↗</a></div>
         </article>)}</div>
-        <article className="studio-project" data-reveal aria-labelledby="studio-title">
+        <article ref={studioCard} className="studio-project" data-reveal aria-labelledby="studio-title">
           <StudioShowcase/>
-          <div className="studio-copy">
-            <div className="eyebrow">手机镜像 · 机身姿态感知</div>
-            <h3 id="studio-title">3D Studio</h3>
-            <h4>手机画面与姿态，同步呈现。</h4>
-            <p>将手机实时画面镜像到 3D 机身，并感知真机姿态：转动手中的手机，屏幕内容与机身朝向同步呈现，让操作与动作一起被看见。</p>
-            <p className="studio-detail">基于 PhoneTwin Studio 开源项目进行工作台改造。真机镜像与姿态同步通过本地桌面版及 iOS Sender 连接；在线版提供素材导入、镜头编排与录制。左侧 Showcase 为配乐 3D 预演。</p>
-            <div className="studio-tags"><span>手机画面镜像</span><span>机身姿态感知</span><span>镜头编排</span></div>
-            <a className="studio-link" href="https://awoele.github.io/PhoneTwin-Studio/workbench/" target="_blank" rel="noreferrer">体验工作台 <ArrowUpRight size={17}/></a>
-          </div>
+          <button className="studio-copy studio-story-trigger" onClick={event => { readerTrigger.current = event.currentTarget; setSelected(posts.length); setReaderOpen(true); }} aria-label="阅读项目：3D Studio">
+            <div className="post-topline"><span>{studioProject.category}</span><ArrowUpRight size={21}/></div>
+            <div className="studio-story-heading"><span className="project-name">{studioProject.title}</span><h3 id="studio-title">{studioProject.headline}</h3><p>{studioProject.subtitle}</p></div>
+            <div className="post-foot"><span>查看项目故事</span><span className="plus-circle"><Plus size={19}/></span></div>
+          </button>
         </article>
       </section>
       <section id="experience" className="experience-section">
@@ -143,6 +150,6 @@ export default function Home() {
       </section>
     </main>
     <footer className="footer"><a href="#" className="wordmark">aura<span>®</span></a><span>© 2026 杨玄一 · 保持好奇，持续创造。</span><a href="#">回到顶部 ↑</a></footer>
-    <Dialog open={readerOpen} onOpenChange={setReaderOpen} onOpenChangeComplete={open => { if (!open) setSelected(null); }}><DialogContent className="reading-panel" overlayClassName="reading-overlay" showCloseButton={false} finalFocus={() => { readerTrigger.current?.focus({ preventScroll:true }); return false; }}>{selected !== null && <><div className="reading-top"><span className="eyebrow">PROJECT / {posts[selected].role}</span><DialogClose className="reader-close" aria-label="关闭项目"><X size={20}/></DialogClose></div><div className={`reading-image-frame ${posts[selected].style}`}>{selected===0 ? <div className="product-phone-pair"><DeviceFrame src="./images/tf-rolls.webp" alt="TravelFilm 旅行胶卷界面"/><DeviceFrame src="./images/tf-detail.webp" alt="TravelFilm 行程详情界面"/></div> : <div className="screenshot-crop"><img className="reading-cover" src={posts[selected].image} alt={posts[selected].alt} width="1400" height="875"/></div>}</div><DialogTitle className="reading-title">{posts[selected].title}</DialogTitle><DialogDescription className="reading-description">{posts[selected].date} · {posts[selected].subtitle}</DialogDescription><div className="reading-body">{posts[selected].body.map(p => <p key={p}>{p}</p>)}</div><div className="reading-end">{posts[selected].tech}</div><a className="project-visit" href={posts[selected].url} target="_blank" rel="noreferrer">访问项目 <ArrowUpRight size={17}/></a><button className="next-post" onClick={() => setSelected((selected + 1) % posts.length)}>下一个项目：{posts[(selected + 1) % posts.length].title}<ArrowRight size={18}/></button></>}</DialogContent></Dialog>
+    <Dialog open={readerOpen} onOpenChange={setReaderOpen} onOpenChangeComplete={open => { if (!open) setSelected(null); }}><DialogContent className="reading-panel" overlayClassName="reading-overlay" showCloseButton={false} finalFocus={() => { readerTrigger.current?.focus({ preventScroll:true }); return false; }}>{selected !== null && <><div className="reading-top"><span className="eyebrow">PROJECT / {readerPosts[selected].role}</span><DialogClose className="reader-close" aria-label="关闭项目"><X size={20}/></DialogClose></div><div className={`reading-image-frame ${readerPosts[selected].style}`}>{selected===0 ? <div className="product-phone-pair"><DeviceFrame src="./images/tf-rolls.webp" alt="TravelFilm 旅行胶卷界面"/><DeviceFrame src="./images/tf-detail.webp" alt="TravelFilm 行程详情界面"/></div> : <div className="screenshot-crop"><img className="reading-cover" src={readerPosts[selected].image} alt={readerPosts[selected].alt} width="1400" height="875"/></div>}</div><DialogTitle className="reading-title">{readerPosts[selected].title}</DialogTitle><DialogDescription className="reading-description">{readerPosts[selected].date} · {readerPosts[selected].subtitle}</DialogDescription><div className="reading-body">{readerPosts[selected].body.map(p => <p key={p}>{p}</p>)}</div><div className="reading-end">{readerPosts[selected].tech}</div><a className="project-visit" href={readerPosts[selected].url} target="_blank" rel="noreferrer">访问项目 <ArrowUpRight size={17}/></a><button className="next-post" onClick={() => setSelected((selected + 1) % readerPosts.length)}>下一个项目：{readerPosts[(selected + 1) % readerPosts.length].title}<ArrowRight size={18}/></button></>}</DialogContent></Dialog>
   </div>;
 }

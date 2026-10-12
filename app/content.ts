@@ -91,3 +91,17 @@ export const experience = [
     links: [],
   },
 ];
+
+export const studioProject = {
+  category: '手机镜像 · 机身姿态感知', date: '在线演示', title: '3D Studio',
+  headline: '手机画面与姿态，同步呈现。', subtitle: '让手机的操作与动作，一起被看见。',
+  image: './images/studio-workbench.png', alt: 'PhoneTwin Studio 3D 手机展示工作台', style: 'studio-story',
+  url: 'https://awoele.github.io/PhoneTwin-Studio/workbench/', tech: 'React · Three.js · Core Motion · ReplayKit',
+  role: '工作台设计与开源二次开发',
+  body: [
+    '围绕手机产品演示，把实时屏幕画面镜像到 3D 手机模型，并通过机身姿态感知，让模型跟随真机旋转，将操作内容与手持动作同步呈现。',
+    '基于 PhoneTwin Studio 开源项目进行工作台改造，结合视角、背景、灯光、镜头预设与自定义运动轨迹，支持逐镜调整顺序、时长与停留节奏，以及浏览器录制。',
+    '真机镜像与姿态同步通过本地桌面版及 iOS Sender 连接：Core Motion 传递姿态，ReplayKit 采集屏幕，Relay 将两类数据转发至 Three.js 场景。在线版提供素材导入、镜头编排与录制，不直接连接真机。',
+    '首页 Showcase 为带 BGM 的循环 3D 预演，使用截图与连续镜头展示 TravelFilm。它是产品演示效果，不是真机实时操作录屏。',
+  ],
+};
