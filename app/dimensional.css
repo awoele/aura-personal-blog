@@ -673,8 +673,8 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .site .hero-copy .hero-intro>span { display:block; white-space:nowrap; }
 @media(max-width:700px) { .site .hero-copy .hero-intro-detail { font-size:clamp(9px,2.8vw,15px); } }
 /* A horizontal studio feature follows the four selected product stories. */
-.studio-project { display:grid; grid-template-columns:minmax(0,1fr) minmax(340px,.48fr); align-items:center; gap:36px; width:min(94vw,1800px); margin:48px 0 0 calc(50% - min(47vw,900px)); padding:28px; border:1px solid #ffffff1c; border-radius:28px; background:#151922; color:#e7e9ee; }
-.studio-preview { display:block; min-width:0; overflow:hidden; aspect-ratio:16/10; border-radius:18px; border:1px solid #ffffff20; background:#0b0d13; }
+.studio-project { display:grid; grid-template-columns:minmax(0,1fr) minmax(340px,.48fr); align-items:center; gap:36px; width:100%; margin:48px 0 0; padding:28px; border:1px solid #ffffff1c; border-radius:28px; background:#151922; color:#e7e9ee; }
+.studio-preview { display:block; min-width:0; overflow:hidden; aspect-ratio:16/9; border-radius:18px; border:1px solid #ffffff20; background:#0b0d13; }
 .studio-preview iframe { display:block; width:100%; height:100%; border:0; }
 .studio-copy .eyebrow { color:#afbbcf; font-size:10px; letter-spacing:1.5px; }
 .studio-copy h3 { font-size:18px; margin:18px 0 10px; color:#b9cbed; }
