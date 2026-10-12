@@ -68,7 +68,17 @@ export default function Home() {
   }, [paused]);
   useEffect(() => {
     const cards = Array.from(document.querySelectorAll<HTMLElement>('.project-grid .project-card'));
-    const syncHeight = () => studioCard.current?.style.setProperty('--studio-card-height', `${Math.max(...cards.map(card => card.getBoundingClientRect().height))}px`);
+    const syncHeight = () => {
+      studioCard.current?.style.setProperty('--studio-card-height', `${Math.max(...cards.map(card => card.getBoundingClientRect().height))}px`);
+      for (const selector of ['.post-topline', '.project-name', 'h3', '.post-foot']) {
+        const source = cards[0]?.querySelector<HTMLElement>(selector);
+        const target = studioCard.current?.querySelector<HTMLElement>(selector);
+        if (!source || !target) continue;
+        const style = getComputedStyle(source);
+        target.style.font = style.font;
+        target.style.letterSpacing = style.letterSpacing;
+      }
+    };
     const observer = new ResizeObserver(syncHeight);
     cards.forEach(card => observer.observe(card));
     syncHeight();
