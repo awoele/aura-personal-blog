@@ -672,3 +672,17 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 
 .site .hero-copy .hero-intro>span { display:block; white-space:nowrap; }
 @media(max-width:700px) { .site .hero-copy .hero-intro-detail { font-size:clamp(9px,2.8vw,15px); } }
+/* A horizontal studio feature follows the four selected product stories. */
+.studio-project { display:grid; grid-template-columns:1.12fr 1fr; align-items:center; gap:48px; margin-top:48px; padding:36px; border:1px solid #ffffff1c; border-radius:28px; background:#151922; color:#e7e9ee; }
+.studio-preview { display:block; min-width:0; overflow:hidden; border-radius:16px; border:1px solid #ffffff20; background:#0b0d13; }
+.studio-preview img { display:block; width:100%; height:auto; }
+.studio-copy .eyebrow { color:#afbbcf; font-size:10px; letter-spacing:1.5px; }
+.studio-copy h3 { font-size:18px; margin:18px 0 10px; color:#b9cbed; }
+.studio-copy h4 { font-size:clamp(27px,3vw,40px); line-height:1.25; letter-spacing:-1px; margin:0 0 20px; }
+.studio-copy p { font-size:14px; line-height:1.9; color:#c4cbd7; margin:0 0 14px; }
+.studio-copy .studio-detail { color:#aab5c7; font-size:12px; }
+.studio-tags { display:flex; flex-wrap:wrap; gap:8px; margin:20px 0; }
+.studio-tags span { border:1px solid #ffffff24; border-radius:50px; padding:6px 10px; color:#bdc8da; font-size:11px; }
+.studio-link { display:inline-flex; align-items:center; gap:10px; color:#b9d3fa; font-size:14px; padding:10px 0; }
+.studio-link:hover { color:#fff; }
+@media(max-width:800px) { .studio-project { grid-template-columns:1fr; gap:26px; padding:24px; margin-top:32px; } .studio-copy h4 { font-size:30px; } }
