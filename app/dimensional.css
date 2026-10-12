@@ -676,6 +676,8 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .studio-project { display:grid; grid-template-columns:minmax(0,1fr) minmax(340px,.48fr); align-items:center; gap:36px; width:100%; margin:48px 0 0; padding:28px; border:1px solid #ffffff1c; border-radius:28px; background:#151922; color:#e7e9ee; }
 .studio-preview { display:block; min-width:0; overflow:hidden; aspect-ratio:16/9; border-radius:18px; border:1px solid #ffffff20; background:#0b0d13; }
 .studio-preview iframe { display:block; width:100%; height:100%; border:0; }
+.studio-preview { position:relative; }
+.studio-sound-toggle { position:absolute; right:16px; top:16px; z-index:2; display:flex; align-items:center; gap:7px; padding:10px 14px; border:1px solid #ffffff60; border-radius:24px; background:#111827d9; color:#fff; font-size:12px; }
 .studio-copy .eyebrow { color:#afbbcf; font-size:10px; letter-spacing:1.5px; }
 .studio-copy h3 { font-size:18px; margin:18px 0 10px; color:#b9cbed; }
 .studio-copy { min-width:0; container-type:inline-size; }
