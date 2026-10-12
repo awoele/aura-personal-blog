@@ -115,12 +115,12 @@ export default function Home() {
         <article className="studio-project" data-reveal aria-labelledby="studio-title">
           <StudioShowcase/>
           <div className="studio-copy">
-            <div className="eyebrow">3D 产品演示 · 交互展示探索</div>
+            <div className="eyebrow">手机镜像 · 机身姿态感知</div>
             <h3 id="studio-title">3D Studio</h3>
-            <h4>让产品演示，多一个维度。</h4>
-            <p>把图片与视频放进 3D 手机场景，调整视角、背景与灯光，编排镜头运动，让产品界面成为可播放、可录制的演示。</p>
-            <p className="studio-detail">基于 PhoneTwin Studio 开源项目进行工作台改造，支持固定视角保存、自定义运动轨迹与逐镜节奏调整。在线版在浏览器内处理导入素材与录制。</p>
-            <div className="studio-tags"><span>3D 手机展示</span><span>镜头编排</span><span>浏览器录制</span></div>
+            <h4>手机画面与姿态，同步呈现。</h4>
+            <p>将手机实时画面镜像到 3D 机身，并感知真机姿态：转动手中的手机，屏幕内容与机身朝向同步呈现，让操作与动作一起被看见。</p>
+            <p className="studio-detail">基于 PhoneTwin Studio 开源项目进行工作台改造。真机镜像与姿态同步通过本地桌面版及 iOS Sender 连接；在线版提供素材导入、镜头编排与录制。左侧 Showcase 为配乐 3D 预演。</p>
+            <div className="studio-tags"><span>手机画面镜像</span><span>机身姿态感知</span><span>镜头编排</span></div>
             <a className="studio-link" href="https://awoele.github.io/PhoneTwin-Studio/workbench/" target="_blank" rel="noreferrer">体验工作台 <ArrowUpRight size={17}/></a>
           </div>
         </article>
