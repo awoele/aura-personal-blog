@@ -94,7 +94,7 @@ export const experience = [
 
 export const studioProject = {
   category: '手机镜像 · 机身姿态感知', date: '在线演示', title: '3D Studio',
-  headline: '手机画面与姿态，同步呈现。', subtitle: '让手机的操作与动作，一起被看见。',
+  headline: '手机画面与姿态，\n同步呈现。', subtitle: '让手机的操作与动作，一起被看见。',
   image: './images/studio-workbench.png', alt: 'PhoneTwin Studio 3D 手机展示工作台', style: 'studio-story',
   url: 'https://awoele.github.io/PhoneTwin-Studio/workbench/', tech: 'React · Three.js · Core Motion · ReplayKit',
   role: '工作台设计与开源二次开发',

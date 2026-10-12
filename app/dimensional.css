@@ -694,7 +694,7 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 .studio-story-trigger .post-topline { width:100%; font-size:11px; color:#afbbcf; gap:12px; }
 .studio-story-trigger .studio-story-heading { width:100%; }
 .studio-story-trigger .project-name { display:block; color:#b9cbed; font-size:13px; letter-spacing:.4px; }
-.studio-story-trigger h3 { white-space:normal; text-wrap:wrap; font-size:clamp(26px,2.5vw,34px); font-weight:550; line-height:1.3; letter-spacing:-.035em; margin:20px 0; color:#e7e9ee; }
+.studio-story-trigger h3 { white-space:pre-line; text-wrap:wrap; font-size:clamp(26px,2.5vw,34px); font-weight:550; line-height:1.3; letter-spacing:-.035em; margin:20px 0; color:#e7e9ee; }
 .studio-story-trigger p { font-size:14px; line-height:1.9; color:#c4cbd7; }
 .studio-story-trigger .post-foot { width:100%; margin:0; }
 .studio-story-trigger:hover .plus-circle { background:#d4e0f1; color:#17253b; }
