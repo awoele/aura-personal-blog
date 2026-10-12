@@ -9,6 +9,7 @@ import ProjectReel from './project-reel';
 import DeviceFrame from './device-frame';
 import PortraitGallery from './portrait-gallery';
 import CommunityStory from './community-story';
+import StudioShowcase from './studio-showcase';
 
 export default function Home() {
   const hero = useRef<HTMLElement>(null);
@@ -112,13 +113,11 @@ export default function Home() {
           <div className="post-meta"><span>{post.date}</span><a href={post.url} target="_blank" rel="noreferrer">访问作品 ↗</a></div>
         </article>)}</div>
         <article className="studio-project" data-reveal aria-labelledby="studio-title">
-          <a className="studio-preview" href="https://awoele.github.io/PhoneTwin-Studio/workbench/" target="_blank" rel="noreferrer" aria-label="体验 3D Studio 工作台">
-            <img src="./images/studio-workbench.png" alt="3D Studio 在线工作台：3D 手机场景与展示工具" loading="lazy" width="1440" height="900"/>
-          </a>
+          <StudioShowcase/>
           <div className="studio-copy">
             <div className="eyebrow">3D 产品演示 · 交互展示探索</div>
             <h3 id="studio-title">3D Studio</h3>
-            <h4>让产品演示，<br/>多一个维度。</h4>
+            <h4>让产品演示，多一个维度。</h4>
             <p>把图片与视频放进 3D 手机场景，调整视角、背景与灯光，编排镜头运动，让产品界面成为可播放、可录制的演示。</p>
             <p className="studio-detail">基于 PhoneTwin Studio 开源项目进行工作台改造，支持固定视角保存、自定义运动轨迹与逐镜节奏调整。在线版在浏览器内处理导入素材与录制。</p>
             <div className="studio-tags"><span>3D 手机展示</span><span>镜头编排</span><span>浏览器录制</span></div>
