@@ -59,7 +59,7 @@ export const projects = [
 export const experience = [
   {
     id: 'manus', company: 'Manus', fullName: '北京蝴蝶效应科技有限公司', role: 'AI 产品市场经理实习生', date: '2026.10 — 至今',
-    headline: '把 Agent 的能力，\n变成可复演的案例。',
+    headline: '把 Agent 的能力，变成可复演的案例。',
     summary: '负责 Manus 的场景探索与能力验证，覆盖互动案例构建、任务回放验收、Badcase 反馈、热点跟进与监控台搭建。',
     metrics: [['6', '个可复演案例 · 场景探索'], ['80%', '任务回放达标率 · 24 / 30 次'], ['12', '条可复现 Badcase · 反馈研发']],
     points: [
@@ -75,7 +75,7 @@ export const experience = [
   },
   {
     id: 'loopit', company: 'Loopit', fullName: '北京涌跃智能科技有限公司', role: 'AI 产品经理实习生', date: '2026.05 — 2026.09',
-    headline: '让 AI 互动内容，\n从灵感走向交付。',
+    headline: '让 AI 互动内容，从灵感走向交付。',
     summary: '负责 AI 互动内容的供给与消费体验，覆盖内容策略、Skill / Case 产品化、真实任务评测、Badcase 归因、上线验收与数据复盘。',
     metrics: [['29', '个 Skill · 9 期活动'], ['100+', '个 Case 推进上线'], ['约 1–2 小时', '单个 Skill 制作周期 · 原约 2 天']],
     points: [
@@ -95,7 +95,7 @@ export const experience = [
   },
   {
     id: 'baidu', company: '百度', fullName: '汉语垂类搜索', role: '产品经理实习生', date: '2023.02 — 2023.06',
-    headline: '从内容生产，\n到质量与展示。',
+    headline: '从内容生产，到质量与展示。',
     summary: '围绕 Query 供给、AIGC 生产、内容审核、实验监控与前端展示，推进 B / C 端产品落地。',
     metrics: [['13 → 5', '工作日 · 内容生产周期'], ['73% → 95%', 'Query 过滤准确率'], ['8 → 4', '关键人工节点']],
     points: [
