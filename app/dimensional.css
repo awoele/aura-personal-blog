@@ -685,9 +685,19 @@ html,body,.reading-panel[data-slot='dialog-content'] { scrollbar-width:none; -ms
 
 
 
-/* Experience headlines stay on one line; font size follows the heading width. */
+/* Experience headlines stay on one line with one shared size for all experiences.
+   Mobile: every heading is full width, so the heading width sets the size.
+   Desktop: the card width (same for all three) sets the size. The longest headline (Manus, 16.6em in a 48% column with 43px padding) sets the scale. */
 .experience-item .company-heading { container-type:inline-size; }
 .site .experience-item .company-heading>p { white-space:nowrap; font-size:min(26px,5.65cqi); }
+@media(min-width:701px) {
+  .site .experience-item { container-type:inline-size; }
+  .experience-item .company-heading { container-type:normal; }
+  .site .experience-item .company-heading>p { font-size:min(26px,calc(2.85cqi - 5.2px)); }
+  .site .experience-item .experience-summary { max-width:none; }
+}
+/* Summaries use the full card width; when they must wrap, avoid a one-word last line. */
+.site .experience-item .experience-summary { text-wrap:pretty; }
 
 @media(max-width:700px) { .site .experience-manus .company-heading>p,.site .experience-loopit .company-heading>p,.site .experience-baidu .company-heading>p { font-size:min(26px,5.65cqi); line-height:1.45; letter-spacing:-.035em; } }
 
