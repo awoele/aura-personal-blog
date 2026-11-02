@@ -58,7 +58,23 @@ export const projects = [
 
 export const experience = [
   {
-    company: 'Loopit', fullName: '北京涌跃智能科技有限公司', role: 'AI 产品经理实习生', date: '2026.05 — 2026.08',
+    id: 'manus', company: 'Manus', fullName: '北京蝴蝶效应科技有限公司', role: 'AI 产品市场经理实习生', date: '2026.10 — 至今',
+    headline: '把 Agent 的能力，\n变成可复演的案例。',
+    summary: '负责 Manus 的场景探索与能力验证，覆盖互动案例构建、任务回放验收、Badcase 反馈、热点跟进与监控台搭建。',
+    metrics: [['6', '个可复演案例 · 场景探索'], ['80%', '任务回放达标率 · 24 / 30 次'], ['12', '条可复现 Badcase · 反馈研发']],
+    points: [
+      '使用 Manus 联动 Unity 探索 3D 体感跑酷，并探索 3D 语音互动影游、万圣节互动游戏与互联网乐高小镇；沉淀 6 个可复演案例，明确用户价值、操作步骤与适用条件。',
+      '持续体验产品，按任务完成、交互可用与演示稳定性验收；完成 30 次任务回放，其中 24 次达标（80%）。',
+      '整理 12 条可复现 Badcase，明确失败条件与人工介入环节，持续向研发反馈问题。',
+      '与 Marketing 团队跟进热点，复用「热点雷达」的 API + LLM 采集筛选流程，推进监控台搭建；原项目每 100 条内容的人工筛选由 90 分钟缩至 20 分钟，持续沉淀选题与演示素材。',
+    ],
+    links: [
+      ['3D 语音互动影游', 'https://andysroom-4svzs5ij.manus.space/'],
+      ['热点雷达', 'https://awoele.github.io/TrendRadar/content/'],
+    ],
+  },
+  {
+    id: 'loopit', company: 'Loopit', fullName: '北京涌跃智能科技有限公司', role: 'AI 产品经理实习生', date: '2026.05 — 2026.09',
     headline: '让 AI 互动内容，\n从灵感走向交付。',
     summary: '负责 AI 互动内容的供给与消费体验，覆盖内容策略、Skill / Case 产品化、真实任务评测、Badcase 归因、上线验收与数据复盘。',
     metrics: [['29', '个 Skill · 9 期活动'], ['100+', '个 Case 推进上线'], ['约 1–2 小时', '单个 Skill 制作周期 · 原约 2 天']],
@@ -78,7 +94,7 @@ export const experience = [
     ],
   },
   {
-    company: '百度', fullName: '汉语垂类搜索', role: '产品经理实习生', date: '2023.02 — 2023.06',
+    id: 'baidu', company: '百度', fullName: '汉语垂类搜索', role: '产品经理实习生', date: '2023.02 — 2023.06',
     headline: '从内容生产，\n到质量与展示。',
     summary: '围绕 Query 供给、AIGC 生产、内容审核、实验监控与前端展示，推进 B / C 端产品落地。',
     metrics: [['13 → 5', '工作日 · 内容生产周期'], ['73% → 95%', 'Query 过滤准确率'], ['8 → 4', '关键人工节点']],
